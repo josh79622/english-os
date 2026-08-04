@@ -15,6 +15,7 @@ export const paths = {
   stateIndex: path.join(ROOT, 'state', 'index.json'),
   metrics: path.join(ROOT, 'state', 'metrics.json'),
   pendingCorrections: path.join(ROOT, 'state', 'pending-corrections.json'),
+  settingHistory: path.join(ROOT, 'state', 'setting-history.json'),
   briefing: path.join(ROOT, 'briefings', 'DAILY_BRIEFING.md'),
 };
 
@@ -99,28 +100,6 @@ export function slugify(text: string): string {
     .trim()
     .replace(/[\s_]+/g, '-')
     .replace(/-+/g, '-');
-}
-
-/**
- * Deterministic pseudo-randomness, seeded by a string.
- *
- * Regenerating a briefing on the same day must produce the same briefing;
- * a wobbling scenario suggestion would make the artifact untrustworthy.
- */
-export function seededRandom(seed: string): () => number {
-  let h = 2166136261 >>> 0;
-  for (const ch of seed) {
-    h ^= ch.charCodeAt(0);
-    h = Math.imul(h, 16777619) >>> 0;
-  }
-  return () => {
-    h ^= h << 13;
-    h >>>= 0;
-    h ^= h >> 17;
-    h ^= h << 5;
-    h >>>= 0;
-    return h / 4294967296;
-  };
 }
 
 export function weightedPick<T>(items: readonly T[], weights: readonly number[], rnd: () => number): T {

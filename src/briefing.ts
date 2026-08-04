@@ -10,7 +10,9 @@
 import { DOMAINS } from './types.ts';
 import type { Domain, Item } from './types.ts';
 import { loadAllItems } from './item.ts';
-import { paths, writeFile, today, daysBetween, seededRandom, weightedPick } from './util.ts';
+import {
+  paths, writeFile, readJson, writeJson, today, daysBetween, weightedPick,
+} from './util.ts';
 
 export const REVIEW_COUNT = 3;
 export const NEW_COUNT = 2;
@@ -463,7 +465,11 @@ export interface Briefing {
   backlog: number;
 }
 
-export function selectBriefing(items: Item[] = loadAllItems(), date = today()): Briefing {
+export function selectBriefing(
+  items: Item[] = loadAllItems(),
+  date = today(),
+  setting: Setting = pickSetting(),
+): Briefing {
   const reviewable = items.filter((i) => i.type !== 'mistake');
   const taken = new Set<string>();
   const take = (list: Item[], n: number): Item[] => {
@@ -499,7 +505,7 @@ export function selectBriefing(items: Item[] = loadAllItems(), date = today()): 
 
   return {
     date,
-    ...suggestSetting(date),
+    ...setting,
     review: take(due, REVIEW_COUNT),
     fresh: take(fresh, NEW_COUNT),
     stretch: take(stretch, STRETCH_COUNT),
@@ -517,26 +523,63 @@ function difficultyRank(item: Item): number {
   return { easy: 0, medium: 1, hard: 2 }[item.difficulty];
 }
 
+export type Setting = Pick<Briefing, 'scenario' | 'premise' | 'facts' | 'persona'>;
+
+/** How many recent settings to avoid repeating. */
+const HISTORY_AVOID = 4;
+
+interface SettingHistory {
+  scenarios: string[];
+  personas: string[];
+}
+
 /**
  * Scenario and persona are drawn from one domain — a pharmacist running a
  * standup would break the illusion the persona exists to create.
  *
- * Seeded by date so regenerating today's briefing never changes it.
+ * Every call gives a different setting. This used to be seeded by date so
+ * that regenerating a briefing mid-day could not move the ground under a
+ * session in progress, but that also made it impossible to ask for a
+ * different scene, which is the more common thing to want.
+ *
+ * `recent` holds the last few scenarios and personas and is excluded, so
+ * consecutive runs actually feel different rather than landing on the same
+ * pick twice by chance. Exclusion is dropped if it would leave nothing.
  */
-function suggestSetting(
-  date: string,
-): Pick<Briefing, 'scenario' | 'premise' | 'facts' | 'persona'> {
-  const rnd = seededRandom(date);
+export function pickSetting(recent: SettingHistory = readHistory()): Setting {
+  const rnd = Math.random;
   const domain = weightedPick(DOMAINS, DOMAIN_WEIGHTS, rnd);
-  const scenarios = SCENARIOS[domain];
-  const personas = PERSONAS[domain];
-  const scenario = scenarios[Math.floor(rnd() * scenarios.length)];
+
+  const scenario =
+    pick(SCENARIOS[domain].filter((s) => !recent.scenarios.includes(s.label)), rnd) ??
+    pick(SCENARIOS[domain], rnd);
+  const persona =
+    pick(PERSONAS[domain].filter((p) => !recent.personas.includes(p)), rnd) ??
+    pick(PERSONAS[domain], rnd);
+
   return {
     scenario: scenario?.label ?? domain,
     premise: scenario?.premise ?? `An ordinary ${domain} conversation.`,
     facts: scenario?.facts ?? [],
-    persona: personas[Math.floor(rnd() * personas.length)] ?? 'a friendly Australian stranger.',
+    persona: persona ?? 'a friendly Australian stranger.',
   };
+}
+
+function pick<T>(list: T[], rnd: () => number): T | undefined {
+  return list.length ? list[Math.floor(rnd() * list.length)] : undefined;
+}
+
+function readHistory(): SettingHistory {
+  return readJson<SettingHistory>(paths.settingHistory, { scenarios: [], personas: [] });
+}
+
+/** Only `writeBriefing` records — reading a briefing must not mutate state. */
+function recordSetting(s: Setting): void {
+  const h = readHistory();
+  writeJson(paths.settingHistory, {
+    scenarios: [s.scenario, ...h.scenarios].slice(0, HISTORY_AVOID),
+    personas: [s.persona, ...h.personas].slice(0, HISTORY_AVOID),
+  });
 }
 
 /**
@@ -720,7 +763,9 @@ function gloss(item: Item): string {
 }
 
 export function writeBriefing(items?: Item[], date = today()): Briefing {
-  const briefing = selectBriefing(items, date);
+  const setting = pickSetting();
+  recordSetting(setting);
+  const briefing = selectBriefing(items, date, setting);
   writeFile(paths.briefing, renderBriefing(briefing));
   return briefing;
 }

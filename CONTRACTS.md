@@ -108,9 +108,11 @@ Selection rule: **3 due + 2 new + 1 stretch** (from v1.0), where
 - **stretch** = highest-difficulty item with `mastery_score < 0.5`;
 - **watch for** = up to 3 `mistake` items with the highest `frequency`.
 
-Scenario and persona are drawn from the same domain, seeded by date — the
-same day always yields the same setting, so regenerating a briefing mid-day
-never moves the ground under a session.
+Scenario and persona are drawn from the same domain, and change on every
+run — regenerate the briefing and you get a different scene. The last four
+of each are held in `state/setting-history.json` and excluded, so
+consecutive runs feel genuinely different rather than landing on the same
+pick twice by chance.
 
 Every scenario carries a **premise** — who the learner is here, what has
 already happened, what they want — and a list of **facts**: dates, names,

@@ -1,0 +1,14 @@
+{
+  "scenarios": [
+    "disagreeing in a meeting",
+    "standup update",
+    "ordering at a cafe",
+    "making plans for the weekend"
+  ],
+  "personas": [
+    "Priya, your project manager. Direct and time-poor, always with another\nmeeting in ten minutes. She was burned by a deadline that slipped without\nwarning and it shows — she wants dates, numbers and names, and pushes back\nhard on \"probably\", \"I think\" and \"soon\". Not unkind, just relentless. Commit\nto something specific and she writes it down and moves on.",
+    "Sarah, your new manager, three months in. Warm, over-prepared, still\nworking out how hard to push. She asks a lot of follow-up questions because\nshe is afraid of missing something, then apologises for asking them.\nGenuinely wants you to do well. Occasionally overcorrects into being too\nformal and catches herself doing it.",
+    "Beau, the barista. Twenty-something, relaxed, chats while he works\nbecause the queue is short. Your day, the weather, whatever is playing. He is\ngenuinely easy to talk to and will keep it going as long as you do, but he is\nalso making three coffees, so he drops out mid-thread and picks it up again a\nminute later.",
+    "Marcus, a mate of a mate. You have met once, briefly. Polite and guarded\nat first — short answers, lets silences sit — but he opens up if you ask him\nsomething real instead of the usual. Into cycling and old films. Once he is\ncomfortable he is dry and funny. Getting him there is the work."
+  ]
+}
