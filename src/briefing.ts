@@ -27,6 +27,15 @@ interface Scenario {
    * to push against — which is exactly how the first attempt failed.
    */
   premise: string;
+  /**
+   * Concrete facts the learner holds: dates, names, numbers, what was already
+   * tried. Without these the learner has to invent the content of the story
+   * and say it in a second language at the same time, and it is the inventing
+   * that stalls them — asked "why was it late?" with nothing to draw on, there
+   * is no answer to give. The facts also fence the coach in: it cannot
+   * interrogate its way into territory the learner has no material for.
+   */
+  facts: string[];
 }
 
 /** Scenario suggestions per domain. Extend freely; this is not schema. */
@@ -38,6 +47,13 @@ const SCENARIOS: Record<Domain, Scenario[]> = {
 checkout flow. Yesterday you finished the payment validation, but you also
 found a bug in someone else's code that is going to slow you down today. Give
 your update, and decide how much to say about the bug.`,
+      facts: [
+        'The payment validation went in yesterday afternoon. Tested, merged, done.',
+        'Today you are on the refund path. You think it is a day and a half.',
+        'The bug is in the discount code, written by someone on the other team.',
+        'It does not block you, but it produces wrong totals if it ships.',
+        'You have not told anyone about it yet.',
+      ],
     },
     {
       label: 'disagreeing in a meeting',
@@ -45,6 +61,13 @@ your update, and decide how much to say about the bug.`,
 is too early — the error handling is barely tested and you will be the one
 fixing it at midnight. Everyone else seems fine with the date. You have to
 say something, and you are the only one who is going to.`,
+      facts: [
+        'The ship date is Friday the 14th.',
+        'Error handling has about 30% test coverage. The happy path is fine.',
+        'A similar release two weeks ago cost you a weekend of manual fixes.',
+        'One extra week would be enough. Two would be comfortable.',
+        'Marketing has already booked an announcement for the 14th.',
+      ],
     },
     {
       label: 'asking for a deadline extension',
@@ -52,6 +75,13 @@ say something, and you are the only one who is going to.`,
 Part of that is a dependency you did not control; part of it is that you
 underestimated the work. You need until the middle of next week. You have not
 asked for an extension before, so this is the first time.`,
+      facts: [
+        'You promised the reporting export for Thursday.',
+        'The API team delivered their endpoint nine days late, last Monday.',
+        'You also underestimated the CSV formatting: you said a day, it has been three.',
+        'You need until Wednesday next week to do it properly.',
+        'You could ship something rough on Thursday, but it would break on large exports.',
+      ],
     },
     {
       label: 'explaining a delay',
@@ -59,6 +89,14 @@ asked for an extension before, so this is the first time.`,
 people outside the team. Nobody has accused you of anything, but you have
 been asked to explain what happened. The real reason is a mix of a vague
 brief, a sick teammate, and a decision you would make differently now.`,
+      facts: [
+        'The work is the customer data migration. It was due two weeks ago.',
+        'The original brief was one paragraph. The first week went on working out what it meant.',
+        'Mei, the only person who knew the old schema, was off sick for eight days.',
+        'You chose to migrate everything at once instead of in batches. In hindsight, wrong.',
+        'It is about 70% done, and the remaining 30% is the hard part.',
+        'Nobody outside the team knew until last Friday.',
+      ],
     },
     {
       label: 'one-on-one with a manager',
@@ -66,6 +104,13 @@ brief, a sick teammate, and a decision you would make differently now.`,
 problem — you have been doing the same kind of work for eight months and you
 want something harder, ideally the migration project everyone is talking
 about. You have not raised this before and you are not sure how to.`,
+      facts: [
+        'Eight months on billing maintenance. You are good at it and bored by it.',
+        'The migration project starts next quarter. Two people are on it already.',
+        'You rebuilt the export pipeline in March — the closest thing you have done to it.',
+        'You are not unhappy, and you do not want this to sound like a threat to leave.',
+        'You would take it even if it meant a few hard months.',
+      ],
     },
     {
       label: 'negotiating scope',
@@ -73,6 +118,13 @@ about. You have not raised this before and you are not sure how to.`,
 three. You are not going to say no — you want to find the version that fits,
 and get agreement on what gets dropped. The other person believes all of it
 is essential.`,
+      facts: [
+        'The request is an admin dashboard: user search, reports, permissions, audit log.',
+        'You have three weeks. A proper build is six.',
+        'Search and reports are what they use daily. You are confident about those.',
+        'The audit log alone is about two weeks.',
+        'Permissions could be done crudely now and properly later.',
+      ],
     },
   ],
   social: [
@@ -81,6 +133,13 @@ is essential.`,
       premise: `Saturday afternoon at a friend's place. You know the host and
 almost nobody else. You are standing near the food with a drink, and someone
 has just started talking to you. You have nowhere to be for two hours.`,
+      facts: [
+        'Anna, the host, is a work friend. She is inside and has been for a while.',
+        'You have been here twenty minutes and eaten nothing.',
+        'You moved to this area about a year ago.',
+        'You are free until six.',
+        'You do not know a single other person here by name.',
+      ],
     },
     {
       label: 'catching up with a friend',
@@ -88,12 +147,26 @@ has just started talking to you. You have nowhere to be for two hours.`,
 has happened on your side — work, a trip, something you have been thinking
 about changing. They will ask. Decide how much you actually want to get
 into.`,
+      facts: [
+        'You changed teams four months ago. Better work, longer hours.',
+        'You went to Japan for two weeks in May. First real trip in years.',
+        'You have been thinking about moving out of the city. You have told almost no one.',
+        'They had a rough year and you know it. You want to hear about that too.',
+        'You have about an hour before you need to leave.',
+      ],
     },
     {
       label: 'meeting someone new',
       premise: `A friend's dinner. You have been seated next to someone you
 have never met and the friend has just been pulled into the kitchen. It is
 the two of you now, and neither of you started this.`,
+      facts: [
+        'Dan is hosting. You have known him since university.',
+        'The person beside you came with Dan\'s partner.',
+        'Six people at the table. The others are deep in their own conversation.',
+        'You know nothing about this person, not even what they do.',
+        'Dinner has at least another hour to run.',
+      ],
     },
     {
       label: 'making plans for the weekend',
@@ -101,6 +174,13 @@ the two of you now, and neither of you started this.`,
 so does the other person, but your ideas are not the same — one of you wants
 to go out of the city, the other wants a quiet one. Both of you are being
 polite about it, which is making it slow.`,
+      facts: [
+        'You want to drive to the coast on Saturday. Ninety minutes each way.',
+        'They had a heavy week and want to stay home.',
+        'Sunday is open for both of you.',
+        'You have a car. They do not.',
+        'The forecast is good Saturday, wet Sunday.',
+      ],
     },
     {
       label: 'reacting to a story',
@@ -108,6 +188,13 @@ polite about it, which is making it slow.`,
 them — a job that fell through, a trip that went wrong. They are not asking
 for advice. Your job in this conversation is to be good company: react, ask
 the right questions, and know when to just listen.`,
+      facts: [
+        'They applied for a job they badly wanted and found out yesterday they did not get it.',
+        'They made the final round, which makes it worse.',
+        'You know they have been unhappy where they are for about a year.',
+        'They are not asking for advice and will push back if you give it.',
+        'Nothing is rushing either of you.',
+      ],
     },
   ],
   daily: [
@@ -117,6 +204,13 @@ the right questions, and know when to just listen.`,
 night, and you have already tried the obvious things. You do not have a
 prescription and you are not sure whether you need to see a doctor. You want
 to explain the symptoms clearly enough to get a real answer.`,
+      facts: [
+        'Ten days. Dry cough, worse at night, keeping you awake.',
+        'No fever. You had a sore throat at the start, not any more.',
+        'You have tried honey and lemon, and one syrup from the supermarket that did nothing.',
+        'You take no other medication.',
+        'You would rather not take time off to see a doctor unless you have to.',
+      ],
     },
     {
       label: 'ordering at a cafe',
@@ -124,6 +218,13 @@ to explain the symptoms clearly enough to get a real answer.`,
 something to eat, but you have a question about one of the items and you are
 also not certain what half the menu names mean. The queue behind you is
 short. There is time to ask.`,
+      facts: [
+        'You want a flat white and something savoury.',
+        'The menu lists a "brekkie roll" and you do not know what is in it.',
+        'You do not eat mushrooms.',
+        'You are eating in, not taking away.',
+        'You have about half an hour.',
+      ],
     },
     {
       label: 'booking an appointment',
@@ -131,6 +232,13 @@ short. There is time to ask.`,
 mornings, and Wednesdays are impossible. The first slot you are offered will
 not work, and you will have to negotiate a bit without being difficult about
 it.`,
+      facts: [
+        'A dentist check-up. Nothing urgent, nothing hurts.',
+        'Mornings before ten work. Wednesdays are impossible.',
+        'It has to be within two weeks — you are away after that.',
+        'You do not mind which dentist you see.',
+        'You can be reached on your mobile during the day.',
+      ],
     },
     {
       label: 'asking for directions',
@@ -138,12 +246,26 @@ it.`,
 away and your phone is nearly dead. You have a rough idea of the direction
 but not the street. You are going to have to describe where you are trying to
 get to, and then actually follow the answer.`,
+      facts: [
+        'You are looking for 42 Bell Street. You think it is near a park.',
+        'You are standing outside a supermarket on a main road.',
+        'Your phone is at 4%. Enough to look at one thing, not to navigate.',
+        'You are on foot and have about twenty minutes.',
+        'You came from the train station, which is behind you.',
+      ],
     },
     {
       label: 'at the supermarket checkout',
       premise: `A normal shop, end of the day. Nothing is wrong. This is the
 low-stakes one: the whole exercise is holding a light, friendly exchange with
 a stranger for two minutes without it going flat.`,
+      facts: [
+        'Bread, milk, vegetables, and something for dinner tonight.',
+        'You brought your own bags.',
+        'It is about six in the evening. You finished work an hour ago.',
+        'Nothing is wrong and you are in no hurry.',
+        'You have shopped here for a year and never spoken to this person.',
+      ],
     },
   ],
   service: [
@@ -153,6 +275,13 @@ a stranger for two minutes without it going flat.`,
 stopped working. You have the receipt but not the box. The store's policy
 says thirty days, which has passed. You believe a five-week-old product
 failing is not your problem, and you want a refund rather than a repair.`,
+      facts: [
+        'Headphones, $180, bought on the 30th of June — five weeks ago.',
+        'The left side cuts out after about ten minutes of use.',
+        'You have the emailed receipt on your phone. The box is long gone.',
+        'The sign says thirty days, but that is for change of mind. This is a fault.',
+        'You want a refund. You do not want a repair that takes three weeks.',
+      ],
     },
     {
       label: 'calling about a bill',
@@ -160,6 +289,13 @@ failing is not your problem, and you want a refund rather than a repair.`,
 You cannot see anything on it that explains the difference, and you are
 fairly sure you did not change anything. You want it explained, and if it is
 wrong, corrected — today, not "within five business days".`,
+      facts: [
+        'Your bill is normally about $65. This month it is $138.',
+        'The extra shows up as "additional usage" with no breakdown.',
+        'You have not changed your plan or added anything in over a year.',
+        'You were away for ten days of that billing period.',
+        'It auto-debits on the 20th, so you want it sorted before then.',
+      ],
     },
     {
       label: 'making a complaint politely',
@@ -167,6 +303,13 @@ wrong, corrected — today, not "within five business days".`,
 honoured, a service that was not delivered as promised. You are annoyed. You
 also know that being annoyed at the person in front of you will not help.
 The task is to be firm and clear without turning it into a fight.`,
+      facts: [
+        'You booked a table for six for your mother\'s birthday, confirmed by email.',
+        'On arrival there was no booking. You waited forty minutes.',
+        'You were eventually seated at a table beside the kitchen door.',
+        'You have the confirmation email and a reference number.',
+        'You are not after free food. You want it properly acknowledged.',
+      ],
     },
     {
       label: 'chasing up a delayed delivery',
@@ -174,6 +317,13 @@ The task is to be firm and clear without turning it into a fight.`,
 updated in a week. This is your second call — the first one ended with a
 promise to "look into it" and nothing happened. You want a date you can
 actually rely on this time.`,
+      facts: [
+        'A desk. Ordered on the 12th of July, due on the 27th.',
+        'Tracking last moved on the 29th and still says "at depot".',
+        'You called on the 1st. They said 48 hours and to call back if nothing changed.',
+        'Nothing changed.',
+        'You work from home, so any weekday delivery works.',
+      ],
     },
   ],
 };
@@ -304,6 +454,7 @@ export interface Briefing {
   date: string;
   scenario: string;
   premise: string;
+  facts: string[];
   persona: string;
   review: Item[];
   fresh: Item[];
@@ -372,7 +523,9 @@ function difficultyRank(item: Item): number {
  *
  * Seeded by date so regenerating today's briefing never changes it.
  */
-function suggestSetting(date: string): Pick<Briefing, 'scenario' | 'premise' | 'persona'> {
+function suggestSetting(
+  date: string,
+): Pick<Briefing, 'scenario' | 'premise' | 'facts' | 'persona'> {
   const rnd = seededRandom(date);
   const domain = weightedPick(DOMAINS, DOMAIN_WEIGHTS, rnd);
   const scenarios = SCENARIOS[domain];
@@ -381,6 +534,7 @@ function suggestSetting(date: string): Pick<Briefing, 'scenario' | 'premise' | '
   return {
     scenario: scenario?.label ?? domain,
     premise: scenario?.premise ?? `An ordinary ${domain} conversation.`,
+    facts: scenario?.facts ?? [],
     persona: personas[Math.floor(rnd() * personas.length)] ?? 'a friendly Australian stranger.',
   };
 }
@@ -477,9 +631,29 @@ export function renderBriefing(b: Briefing): string {
     'your character is the opposite of quizzing — do it constantly.',
     '',
     '## THE SITUATION',
+    'This section and the next describe *me* — my side of the scene. They are',
+    'written as if speaking to me, so "you" in them means me, the learner,',
+    'never your character.',
+    '',
     `Setting: ${b.scenario}.`,
     '',
     b.premise,
+    '',
+    '## WHAT I KNOW',
+    'These are my facts. I have nothing else — ask me about anything outside',
+    'this list and I have no answer to give you, which is where the',
+    'conversation stops.',
+    '',
+    ...b.facts.map((f) => `- ${f}`),
+    '',
+    'So: do not invent competing details. No other project names, no other',
+    'numbers, no events that are not here. Build your side of the scene',
+    'around these.',
+    '',
+    'And when I hesitate, it is usually because I do not know what to say,',
+    'not how to say it. Turn your open question into a choice from the list',
+    '— "was it the brief, or was it losing Mei for that week?" — and let me',
+    'take one.',
     '',
     '## WHO YOU ARE TODAY',
     `Play ${b.persona}`,

@@ -112,11 +112,18 @@ Scenario and persona are drawn from the same domain, seeded by date — the
 same day always yields the same setting, so regenerating a briefing mid-day
 never moves the ground under a session.
 
-Every scenario carries a **premise**: who the learner is in this situation,
-what has already happened, and what they want out of it. A bare label opens
-the session mid-situation with nothing to push against. The coach is also
-told to set the scene and warm up before the real business — a session that
-starts at the conflict is a session the learner cannot enter.
+Every scenario carries a **premise** — who the learner is here, what has
+already happened, what they want — and a list of **facts**: dates, names,
+numbers, what was already tried. A bare label opens the session
+mid-situation with nothing to push against; a premise without facts leaves
+the learner inventing the content of the story *and* saying it in a second
+language, and it is the inventing that stalls them. The facts also fence the
+coach in — it cannot interrogate its way into territory the learner has no
+material for.
+
+The coach is told to set the scene and warm up before the real business, and
+to convert open questions into a choice from the fact list whenever the
+learner hesitates.
 
 If more than 3 items are due, the backlog carries over — never inflate
 the briefing. Sustained backlog is a health violation (see MAINTENANCE_RULES.md).
