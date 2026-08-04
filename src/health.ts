@@ -7,7 +7,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { loadAllItems, itemPath, ItemError } from './item.ts';
-import { renderBriefing, selectBriefing } from './briefing.ts';
+import { renderSelection, selectBriefing } from './briefing.ts';
 import { rebuildIndex } from './indexer.ts';
 import type { Item, MetricSample } from './types.ts';
 import { ROOT, paths, readJson, today, daysBetween } from './util.ts';
@@ -139,12 +139,13 @@ export function checkHealth(opts: { fix?: boolean } = {}): Violation[] {
     });
   }
 
-  // H7 — briefing budget.
-  const briefingLines = renderBriefing(selectBriefing(items, now)).split('\n').length;
+  // H7 — briefing budget. Measures the selected items only; the fixed coach
+  // instructions and report spec are overhead the selection cannot inflate.
+  const briefingLines = renderSelection(selectBriefing(items, now)).split('\n').length;
   if (briefingLines > LIMITS.briefingLines) {
     v.push({
       check: 'H7', severity: 'warn', fixable: false,
-      message: `briefing is ${briefingLines} lines (limit ${LIMITS.briefingLines}) — selection is over-including`,
+      message: `briefing selection is ${briefingLines} lines (limit ${LIMITS.briefingLines}) — selection is over-including`,
     });
   }
 

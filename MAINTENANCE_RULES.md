@@ -25,7 +25,7 @@ automatically.
 | H4 | Duplicate knowledge | same `type` and title similarity ≥ 0.85 | Merge into the older `id`, redirect links |
 | H5 | Orphan links | `[[id]]` pointing at a nonexistent item | Create the target, or fix the link |
 | H6 | Review backlog | due items > 15 across 3 consecutive sessions | Raise session frequency or lengthen intervals |
-| H7 | Briefing budget | briefing > 40 lines | Selection logic is over-including |
+| H7 | Briefing budget | selected items > 40 lines | Selection logic is over-including |
 | H8 | Schema drift | item missing a required field | Migrate, and log it below |
 | H9 | Total context cost | `INDEX.md` > 1500 lines | Shard the index by type |
 | H10 | Stale items | `status: new` and `last_seen` > 180 days | Archive or drop — introduced, never used |
