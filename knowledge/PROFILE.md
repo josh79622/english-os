@@ -96,3 +96,9 @@ fill it in as you notice which questions catch you out.
 - I have improved since I arrived. It's just nowhere near what I expected
   from two or three years here.
 - I think I assumed being surrounded by it would be enough. It isn't.
+- I'm not a particularly interesting person in Chinese either, to be fair.
+- I'm careful about other people's boundaries — maybe too careful. I don't
+  push, so I don't ask, and after a while you stop digging at all.
+- Sometimes I'm honest enough to admit I'm just not that interested.
+- Which is probably half of why my conversations stay shallow. If I never
+  ask anything real, the other person has to carry it.

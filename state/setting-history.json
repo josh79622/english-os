@@ -1,14 +1,14 @@
 {
   "scenarios": [
+    "booking an appointment",
     "meeting someone new",
     "asking for directions",
-    "making a complaint politely",
-    "reacting to a story"
+    "making a complaint politely"
   ],
   "personas": [
+    "Rachel, the clinic receptionist. Juggling the phone, the front desk and a\ncomputer that is slow today. She puts you on hold mid-sentence, comes back,\nasks you to repeat what you just said, and is apologetic about all of it. She\nneeds your details in a specific order and will restart you if you give them\nin a different one.",
     "Harriet, seated next to you and equally stranded. Late twenties, works in\nsomething she describes vaguely and clearly does not want to talk about.\nOpens with the obvious questions and is visibly relieved when you ask her\nsomething better. Laughs easily once she relaxes. If the conversation dies\nshe will let it, and check her phone.",
     "Ruth, waiting at the same crossing. Sixties, out with a shopping trolley,\nin no hurry at all. Happy to be asked and gives directions the long way round\n— by the old post office, past where the bakery used to be — with landmarks\nthat assume you have lived here for years. Will check you understood, twice.",
-    "Curtis, the delivery coordinator. Cheerful and useless. He puts you on\nhold to \"just check something\", comes back with nothing new, blames the\ndepot, and offers a delivery window so wide it means nothing. Says \"no\nworries\" constantly. Pin him to a specific commitment or the call goes\nnowhere.",
-    "Jess, a good mate you see every few weeks. Talks fast, tells long stories\nwith too much detail about people you have never met, and stops halfway to\nask \"wait, did I tell you this already?\" Expects you to react — go quiet and\nshe will say \"you're being weird, what's up?\" Generous, nosy, and very hard\nto interrupt."
+    "Curtis, the delivery coordinator. Cheerful and useless. He puts you on\nhold to \"just check something\", comes back with nothing new, blames the\ndepot, and offers a delivery window so wide it means nothing. Says \"no\nworries\" constantly. Pin him to a specific commitment or the call goes\nnowhere."
   ]
 }
