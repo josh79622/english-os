@@ -106,3 +106,14 @@ fill it in as you notice which questions catch you out.
 - Sometimes I'm honest enough to admit I'm just not that interested.
 - Which is probably half of why my conversations stay shallow. If I never
   ask anything real, the other person has to carry it.
+- I got into programming because it came easily at first. I picked it up
+  faster than the people around me, and that was enough of a reason at the
+  time.
+- Then you get into the industry and you realise how many people are better
+  than you. A lot better.
+- And it never stops. You have to keep learning, forever, and honestly I
+  find that exhausting.
+- I'm past the point where changing fields is realistic, so here I am.
+- If I could go back to university, I'd pick something else.
+- That's the honest version, obviously. In an interview I'd put it very
+  differently.
