@@ -10,6 +10,7 @@ export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 export const paths = {
   items: path.join(ROOT, 'knowledge', 'items'),
   knowledgeIndex: path.join(ROOT, 'knowledge', 'INDEX.md'),
+  profile: path.join(ROOT, 'knowledge', 'PROFILE.md'),
   sessions: path.join(ROOT, 'sessions'),
   state: path.join(ROOT, 'state'),
   stateIndex: path.join(ROOT, 'state', 'index.json'),

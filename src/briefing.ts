@@ -7,6 +7,7 @@
  * feature — see health check H7.
  */
 
+import fs from 'node:fs';
 import { DOMAINS } from './types.ts';
 import type { Domain, Item } from './types.ts';
 import { loadAllItems } from './item.ts';
@@ -447,10 +448,18 @@ nowhere.`,
 };
 
 /**
- * The top domain gets roughly half the sessions. A single domain must not
- * starve the rest — fluency that only works at the office is not fluency.
+ * Weights line up with DOMAINS: work, social, daily, service.
+ *
+ * Tilted towards social and daily for the early phase. Work scenarios are the
+ * hardest — they carry stakes, invented technical detail and an adversarial
+ * other party all at once — and running them half the time made most sessions
+ * an endurance test. Confidence comes first; the weights move back towards
+ * work once ordinary conversation stops being the hard part.
+ *
+ * A single domain must not starve the rest — fluency that only works at the
+ * office is not fluency, and the reverse is just as true.
  */
-const DOMAIN_WEIGHTS = [0.5, 0.25, 0.15, 0.1];
+const DOMAIN_WEIGHTS = [0.15, 0.4, 0.35, 0.1];
 
 export interface Briefing {
   date: string;
@@ -563,6 +572,53 @@ export function pickSetting(recent: SettingHistory = readHistory()): Setting {
     facts: scenario?.facts ?? [],
     persona: persona ?? 'a friendly Australian stranger.',
   };
+}
+
+/**
+ * The learner's standing facts, from the hand-written knowledge/PROFILE.md.
+ *
+ * Scenario facts cover the scene; this covers everything around it — what I
+ * do, where I live, what I did on the weekend. Those questions come up in
+ * every conversation regardless of setting, and having no answer to them is
+ * what stalls a session that was otherwise going fine.
+ *
+ * Headings are kept, prose and unfilled TODO lines are dropped, so a
+ * half-written profile still renders cleanly.
+ */
+function readProfile(): string[] {
+  if (!fs.existsSync(paths.profile)) return [];
+  const lines: string[] = [];
+
+  for (const raw of fs.readFileSync(paths.profile, 'utf8').split('\n')) {
+    const line = raw.trim();
+    if (line.startsWith('# ')) continue;
+    if (line.startsWith('## ')) {
+      lines.push('', `**${line.slice(3)}**`);
+      continue;
+    }
+    if (!line.startsWith('- ') || line.includes('TODO')) continue;
+    lines.push(line);
+  }
+
+  // Headings whose bullets were all TODO would otherwise render empty.
+  return lines
+    .filter((l, i, a) => !(l.startsWith('**') && !a[i + 1]?.startsWith('- ')))
+    .filter((l, i, a) => !(l === '' && !a[i + 1]?.startsWith('**')))
+    .slice(1);
+}
+
+function profileSection(): string[] {
+  const profile = readProfile();
+  if (profile.length === 0) return [];
+  return [
+    '## ABOUT ME',
+    'True outside this scene and true every time. Ask me about any of it —',
+    'these are the ordinary questions I most need the practice on, and I will',
+    'always have an answer.',
+    '',
+    ...profile,
+    '',
+  ];
 }
 
 function pick<T>(list: T[], rnd: () => number): T | undefined {
@@ -689,6 +745,7 @@ export function renderBriefing(b: Briefing): string {
     'the only thing meant by not quizzing me. Asking me real questions as',
     'your character is the opposite of quizzing — do it constantly.',
     '',
+    ...profileSection(),
     '## THE SITUATION',
     'This section and the next describe *me* — my side of the scene. They are',
     'written as if speaking to me, so "you" in them means me, the learner,',

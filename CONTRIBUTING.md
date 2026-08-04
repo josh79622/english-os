@@ -36,8 +36,11 @@ npm run briefing
 
 Prints and writes `briefings/DAILY_BRIEFING.md`. Paste it into ChatGPT
 Voice as the session opener — it is self-contained, so it is the only
-thing you paste. It selects 3 due + 2 new + 1 stretch, plus up to 3
-recurring mistakes to watch for, and closes with the Session Report spec.
+thing you paste. Every run picks a different scenario and persona, so
+rerun it if the scene does not suit. It selects 3 due + 2 new + 1 stretch,
+plus up to 3 recurring mistakes to watch for, carries `knowledge/PROFILE.md`
+so ordinary questions about your life always have an answer, and closes with
+the Session Report spec.
 
 If more items are due than fit, **the backlog carries over.** Never
 inflate the briefing to catch up — a sustained backlog is a health

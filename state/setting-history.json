@@ -1,14 +1,14 @@
 {
   "scenarios": [
-    "disagreeing in a meeting",
-    "standup update",
-    "ordering at a cafe",
-    "making plans for the weekend"
+    "making plans for the weekend",
+    "asking for a deadline extension",
+    "at the supermarket checkout",
+    "reacting to a story"
   ],
   "personas": [
-    "Priya, your project manager. Direct and time-poor, always with another\nmeeting in ten minutes. She was burned by a deadline that slipped without\nwarning and it shows — she wants dates, numbers and names, and pushes back\nhard on \"probably\", \"I think\" and \"soon\". Not unkind, just relentless. Commit\nto something specific and she writes it down and moves on.",
-    "Sarah, your new manager, three months in. Warm, over-prepared, still\nworking out how hard to push. She asks a lot of follow-up questions because\nshe is afraid of missing something, then apologises for asking them.\nGenuinely wants you to do well. Occasionally overcorrects into being too\nformal and catches herself doing it.",
-    "Beau, the barista. Twenty-something, relaxed, chats while he works\nbecause the queue is short. Your day, the weather, whatever is playing. He is\ngenuinely easy to talk to and will keep it going as long as you do, but he is\nalso making three coffees, so he drops out mid-thread and picks it up again a\nminute later.",
-    "Marcus, a mate of a mate. You have met once, briefly. Polite and guarded\nat first — short answers, lets silences sit — but he opens up if you ask him\nsomething real instead of the usual. Into cycling and old films. Once he is\ncomfortable he is dry and funny. Getting him there is the work."
+    "Marcus, a mate of a mate. You have met once, briefly. Polite and guarded\nat first — short answers, lets silences sit — but he opens up if you ask him\nsomething real instead of the usual. Into cycling and old films. Once he is\ncomfortable he is dry and funny. Getting him there is the work.",
+    "Dave, your team lead. Blunt, mid-forties, nine years at the company and\nconvinced most meetings are a waste of time. He interrupts — not rudely, he\njust gets there before you finish. Says \"yeah, yeah, right\" while you talk,\nand \"so what do you actually need from me?\" when you take too long. Respects\na straight answer and visibly relaxes when he gets one.",
+    "Angela, the pharmacist. Brisk and competent, three people waiting behind\nyou. Short sentences, closed questions, and she fills your pause with the\nnext question rather than waiting. Not rude — busy. Be clear and she is\nhelpful, even warm for a second; ramble and she starts looking past you at\nthe queue.",
+    "Ellie, an old friend back in town after a year overseas. Delighted to see\nyou and full of questions — what happened with the job, are you still in the\nsame place, did that thing ever get sorted. She remembers details you forgot\nyou told her. Interrupts with \"no way, really?\" Wants the actual story, not\nthe summary."
   ]
 }
