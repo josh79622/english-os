@@ -94,12 +94,25 @@ export function inferDomain(scenario: string | null): Domain {
   const map: Record<string, Domain> = {
     workplace: 'work', meeting: 'work', standup: 'work', interview: 'work',
     negotiation: 'work', email: 'work',
-    pub: 'social', party: 'social', 'small talk': 'social', friends: 'social',
+    deadline: 'work', delay: 'work', scope: 'work', 'one-on-one': 'work',
+    // Counter-side shifts before the generic social keys: "small talk on the
+    // register" is the learner at work, not at a party.
+    register: 'daily', customer: 'daily', directions: 'daily',
     pharmacy: 'daily', shop: 'daily', supermarket: 'daily', transport: 'daily',
     cafe: 'daily', doctor: 'daily', appointment: 'daily',
     complaint: 'service', 'phone call': 'service', bank: 'service',
     council: 'service', support: 'service',
+    delivery: 'service', bill: 'service', refund: 'service', faulty: 'service',
+    pub: 'social', party: 'social', 'small talk': 'social', friends: 'social',
+    weekend: 'social', barbecue: 'social', story: 'social', friend: 'social',
   };
+  // Substring, not exact: the scenario labels that actually reach here are
+  // phrases — "at the pharmacy", "standup update" — and an exact lookup
+  // matched none of them, silently tagging every new item as `work`.
   const key = (scenario ?? '').toLowerCase().trim();
-  return map[key] ?? DOMAINS[0];
+  if (!key) return DOMAINS[0];
+  for (const [word, domain] of Object.entries(map)) {
+    if (key.includes(word)) return domain;
+  }
+  return DOMAINS[0];
 }

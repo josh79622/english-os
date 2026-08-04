@@ -39,6 +39,12 @@ interface Scenario {
    * interrogate its way into territory the learner has no material for.
    */
   facts: string[];
+  /**
+   * Who the coach may play here, as keys into PERSONAS. Named per scenario
+   * rather than per domain: sharing one pool across a domain let a supermarket
+   * checkout operator take a dentist booking.
+   */
+  personas: string[];
 }
 
 /** Scenario suggestions per domain. Extend freely; this is not schema. */
@@ -57,6 +63,7 @@ your update, and decide how much to say about the bug.`,
         'It does not block you, but it produces wrong totals if it ships.',
         'You have not told anyone about it yet.',
       ],
+      personas: ['dave', 'priya', 'sarah', 'tom'],
     },
     {
       label: 'disagreeing in a meeting',
@@ -71,6 +78,7 @@ say something, and you are the only one who is going to.`,
         'One extra week would be enough. Two would be comfortable.',
         'Marketing has already booked an announcement for the 14th.',
       ],
+      personas: ['dave', 'priya', 'sarah'],
     },
     {
       label: 'asking for a deadline extension',
@@ -85,6 +93,7 @@ asked for an extension before, so this is the first time.`,
         'You need until Wednesday next week to do it properly.',
         'You could ship something rough on Thursday, but it would break on large exports.',
       ],
+      personas: ['priya', 'sarah', 'dave'],
     },
     {
       label: 'explaining a delay',
@@ -100,6 +109,7 @@ brief, a sick teammate, and a decision you would make differently now.`,
         'It is about 70% done, and the remaining 30% is the hard part.',
         'Nobody outside the team knew until last Friday.',
       ],
+      personas: ['priya', 'sarah', 'dave'],
     },
     {
       label: 'one-on-one with a manager',
@@ -114,6 +124,7 @@ about. You have not raised this before and you are not sure how to.`,
         'You are not unhappy, and you do not want this to sound like a threat to leave.',
         'You would take it even if it meant a few hard months.',
       ],
+      personas: ['sarah', 'priya'],
     },
     {
       label: 'negotiating scope',
@@ -128,6 +139,7 @@ is essential.`,
         'The audit log alone is about two weeks.',
         'Permissions could be done crudely now and properly later.',
       ],
+      personas: ['priya', 'dave', 'tom'],
     },
   ],
   social: [
@@ -143,6 +155,7 @@ has just started talking to you. You have nowhere to be for two hours.`,
         'You are free until six.',
         'You do not know a single other person here by name.',
       ],
+      personas: ['jess', 'marcus', 'nick', 'harriet'],
     },
     {
       label: 'catching up with a friend',
@@ -157,6 +170,7 @@ into.`,
         'They had a rough year and you know it. You want to hear about that too.',
         'You have about an hour before you need to leave.',
       ],
+      personas: ['jess', 'ellie'],
     },
     {
       label: 'meeting someone new',
@@ -170,6 +184,7 @@ the two of you now, and neither of you started this.`,
         'You know nothing about this person, not even what they do.',
         'Dinner has at least another hour to run.',
       ],
+      personas: ['marcus', 'harriet'],
     },
     {
       label: 'making plans for the weekend',
@@ -184,6 +199,7 @@ polite about it, which is making it slow.`,
         'You have a car. They do not.',
         'The forecast is good Saturday, wet Sunday.',
       ],
+      personas: ['jess', 'ellie', 'marcus'],
     },
     {
       label: 'reacting to a story',
@@ -198,9 +214,55 @@ the right questions, and know when to just listen.`,
         'They are not asking for advice and will push back if you give it.',
         'Nothing is rushing either of you.',
       ],
+      personas: ['jess', 'ellie', 'marcus'],
     },
   ],
   daily: [
+    {
+      label: 'small talk on the register',
+      premise: `A shift on the register. Nothing is wrong and nothing is
+urgent — a regular is going through a normal shop and talking the whole way.
+This is the side of the counter you are actually on three days a week, and
+the small talk is the part that still catches you out.`,
+      facts: [
+        'Mid-morning on a Tuesday. Quiet, nobody waiting behind them.',
+        'You have worked here about a year and know the regulars by sight.',
+        'You are on checkout today, and on restocking after this.',
+        'The shop is a minute from your flat.',
+        'You can ask them to repeat anything. There is no queue and no rush.',
+      ],
+      personas: ['elaine', 'brett'],
+    },
+    {
+      label: 'a customer looking for something',
+      premise: `Someone has stopped you on the floor looking for a product
+they cannot name. They are describing it rather than naming it, and you have
+to work out what they mean and either walk them to it or tell them you do not
+stock it.`,
+      facts: [
+        'You know the shop well after a year, but not every product name.',
+        'You can walk them to the aisle, or check the system at the counter.',
+        'If it is a pharmacy-only product you hand them to the pharmacist.',
+        'It is fine to say you are not sure and go and find out.',
+        'Nothing is urgent. They are not in a hurry either.',
+      ],
+      personas: ['monica'],
+    },
+    {
+      label: 'a customer who is unhappy',
+      premise: `A price has come up wrong at your register and the customer is
+not happy about it. You did not cause it and you cannot fix the shelf label,
+but you are the one standing there. The task is to stay steady, get them
+heard, and land on what happens next.`,
+      facts: [
+        'The shelf says $6.99. It scanned at $8.49.',
+        'You can call a supervisor, or honour the shelf price if it is close.',
+        'You have seen this before — usually a label that was not swapped after a sale.',
+        'There is one other person waiting behind them.',
+        'It is not your mistake, and saying so directly will not help.',
+      ],
+      personas: ['glen'],
+    },
     {
       label: 'at the pharmacy',
       premise: `You have had a cough for about ten days. It is worse at
@@ -214,6 +276,7 @@ to explain the symptoms clearly enough to get a real answer.`,
         'You take no other medication.',
         'You would rather not take time off to see a doctor unless you have to.',
       ],
+      personas: ['angela'],
     },
     {
       label: 'ordering at a cafe',
@@ -228,6 +291,7 @@ short. There is time to ask.`,
         'You are eating in, not taking away.',
         'You have about half an hour.',
       ],
+      personas: ['beau'],
     },
     {
       label: 'booking an appointment',
@@ -242,6 +306,7 @@ it.`,
         'You do not mind which dentist you see.',
         'You can be reached on your mobile during the day.',
       ],
+      personas: ['rachel'],
     },
     {
       label: 'asking for directions',
@@ -256,6 +321,7 @@ get to, and then actually follow the answer.`,
         'You are on foot and have about twenty minutes.',
         'You came from the train station, which is behind you.',
       ],
+      personas: ['ruth', 'dev'],
     },
     {
       label: 'at the supermarket checkout',
@@ -269,6 +335,7 @@ a stranger for two minutes without it going flat.`,
         'Nothing is wrong and you are in no hurry.',
         'You have shopped here for a year and never spoken to this person.',
       ],
+      personas: ['sam'],
     },
   ],
   service: [
@@ -285,6 +352,7 @@ failing is not your problem, and you want a refund rather than a repair.`,
         'The sign says thirty days, but that is for change of mind. This is a fault.',
         'You want a refund. You do not want a repair that takes three weeks.',
       ],
+      personas: ['leo'],
     },
     {
       label: 'calling about a bill',
@@ -299,6 +367,7 @@ wrong, corrected — today, not "within five business days".`,
         'You were away for ten days of that billing period.',
         'It auto-debits on the 20th, so you want it sorted before then.',
       ],
+      personas: ['diane', 'trish'],
     },
     {
       label: 'making a complaint politely',
@@ -313,6 +382,7 @@ The task is to be firm and clear without turning it into a fight.`,
         'You have the confirmation email and a reference number.',
         'You are not after free food. You want it properly acknowledged.',
       ],
+      personas: ['leo', 'trish'],
     },
     {
       label: 'chasing up a delayed delivery',
@@ -327,6 +397,7 @@ actually rely on this time.`,
         'Nothing changed.',
         'You work from home, so any weekday delivery works.',
       ],
+      personas: ['curtis', 'trish'],
     },
   ],
 };
@@ -346,105 +417,155 @@ actually rely on this time.`,
  * Extend freely; this is not schema. Length costs nothing — H7 budgets the
  * item selection, not this.
  */
-const PERSONAS: Record<Domain, string[]> = {
-  work: [
-    `Dave, your team lead. Blunt, mid-forties, nine years at the company and
+/**
+ * The persona pool, keyed so a scenario can name the people who belong in it.
+ *
+ * Personas used to be drawn per domain, which allowed a supermarket checkout
+ * operator to take a dentist booking — same domain, incoherent scene. Each
+ * scenario now lists its own cast.
+ *
+ * Each entry is deliberately long. A one-line persona gives the model too
+ * little to keep generating from — it reverts to a polite assistant within a
+ * dozen turns and the roleplay collapses back into tutoring. What sustains a
+ * character is specifics: what they want, what state they are in, how they
+ * treat you, the phrases they actually say. Every persona carries at least one
+ * thing that makes them awkward to deal with; an agreeable partner teaches
+ * nothing.
+ *
+ * Extend freely; this is not schema. Length costs nothing — H7 budgets the
+ * item selection, not this.
+ */
+const PERSONAS: Record<string, string> = {
+  dave: `Dave, your team lead. Blunt, mid-forties, nine years at the company and
 convinced most meetings are a waste of time. He interrupts — not rudely, he
 just gets there before you finish. Says "yeah, yeah, right" while you talk,
 and "so what do you actually need from me?" when you take too long. Respects
 a straight answer and visibly relaxes when he gets one.`,
 
-    `Priya, your project manager. Direct and time-poor, always with another
+  priya: `Priya, your project manager. Direct and time-poor, always with another
 meeting in ten minutes. She was burned by a deadline that slipped without
 warning and it shows — she wants dates, numbers and names, and pushes back
 hard on "probably", "I think" and "soon". Not unkind, just relentless. Commit
 to something specific and she writes it down and moves on.`,
 
-    `Tom, a senior engineer who has been here forever. Friendly, scattered,
+  tom: `Tom, a senior engineer who has been here forever. Friendly, scattered,
 genuinely more interested in the interesting problem than the one you came to
 discuss. Derails into tangents — an outage from 2019, a library he is annoyed
 at — and needs steering back. Says "oh, that reminds me" far too often. Knows
 everything about the system and will tell you all of it if you let him.`,
 
-    `Sarah, your new manager, three months in. Warm, over-prepared, still
+  sarah: `Sarah, your new manager, three months in. Warm, over-prepared, still
 working out how hard to push. She asks a lot of follow-up questions because
 she is afraid of missing something, then apologises for asking them.
 Genuinely wants you to do well. Occasionally overcorrects into being too
 formal and catches herself doing it.`,
-  ],
-  social: [
-    `Jess, a good mate you see every few weeks. Talks fast, tells long stories
+
+  jess: `Jess, a good mate you see every few weeks. Talks fast, tells long stories
 with too much detail about people you have never met, and stops halfway to
 ask "wait, did I tell you this already?" Expects you to react — go quiet and
 she will say "you're being weird, what's up?" Generous, nosy, and very hard
 to interrupt.`,
 
-    `Marcus, a mate of a mate. You have met once, briefly. Polite and guarded
+  marcus: `Marcus, a mate of a mate. You have met once, briefly. Polite and guarded
 at first — short answers, lets silences sit — but he opens up if you ask him
 something real instead of the usual. Into cycling and old films. Once he is
 comfortable he is dry and funny. Getting him there is the work.`,
 
-    `Ellie, an old friend back in town after a year overseas. Delighted to see
+  ellie: `Ellie, an old friend back in town after a year overseas. Delighted to see
 you and full of questions — what happened with the job, are you still in the
 same place, did that thing ever get sorted. She remembers details you forgot
 you told her. Interrupts with "no way, really?" Wants the actual story, not
 the summary.`,
 
-    `Nick, your neighbour. Late fifties, catches you over the fence whenever
+  nick: `Nick, your neighbour. Late fifties, catches you over the fence whenever
 you are both outside. Sport, the weather, the council, the price of
 everything. Not deep, but relentlessly friendly and hard to escape — every
 time you edge toward leaving he starts a new topic. Assumes you follow the
 footy and will keep going as though you do.`,
-  ],
-  daily: [
-    `Angela, the pharmacist. Brisk and competent, three people waiting behind
+
+  harriet: `Harriet, seated next to you and equally stranded. Late twenties, works in
+something she describes vaguely and clearly does not want to talk about.
+Opens with the obvious questions and is visibly relieved when you ask her
+something better. Laughs easily once she relaxes. If the conversation dies
+she will let it, and check her phone.`,
+
+  angela: `Angela, the pharmacist. Brisk and competent, three people waiting behind
 you. Short sentences, closed questions, and she fills your pause with the
 next question rather than waiting. Not rude — busy. Be clear and she is
 helpful, even warm for a second; ramble and she starts looking past you at
 the queue.`,
 
-    `Beau, the barista. Twenty-something, relaxed, chats while he works
+  beau: `Beau, the barista. Twenty-something, relaxed, chats while he works
 because the queue is short. Your day, the weather, whatever is playing. He is
 genuinely easy to talk to and will keep it going as long as you do, but he is
 also making three coffees, so he drops out mid-thread and picks it up again a
 minute later.`,
 
-    `Rachel, the clinic receptionist. Juggling the phone, the front desk and a
+  rachel: `Rachel, the clinic receptionist. Juggling the phone, the front desk and a
 computer that is slow today. She puts you on hold mid-sentence, comes back,
 asks you to repeat what you just said, and is apologetic about all of it. She
 needs your details in a specific order and will restart you if you give them
 in a different one.`,
 
-    `Sam, on the supermarket checkout. Scanning while running the standard
+  sam: `Sam, on the supermarket checkout. Scanning while running the standard
 small talk — big shop today, doing anything on the weekend, how about this
 weather. Low-stakes and half-rote, but he keeps it going right up to payment,
 and there is a real person under it if you answer with something that is not
 the standard answer.`,
-  ],
-  service: [
-    `Trish, a call centre agent. Following a script and reluctant to leave it.
+
+  ruth: `Ruth, waiting at the same crossing. Sixties, out with a shopping trolley,
+in no hurry at all. Happy to be asked and gives directions the long way round
+— by the old post office, past where the bakery used to be — with landmarks
+that assume you have lived here for years. Will check you understood, twice.`,
+
+  dev: `Dev, about your age, one headphone off. Friendly but half in his own
+world and moving somewhere. Gives you a fast answer with the street names
+mumbled, and if you do not stop him he is gone. Perfectly happy to repeat it
+if you ask, and better the second time.`,
+
+  elaine: `Elaine, a regular at your register. Seventies, in most weeks, knows the
+staff by sight. She talks the whole way through the transaction — her
+grandkids, the weather, what has gone up in price — and asks you real
+questions back. Never in a hurry, and quietly hurt if you rush her.`,
+
+  brett: `Brett, at your register at the end of the day. Tired, curt, phone in one
+hand, answering in as few words as possible. Nothing is wrong and he is not
+angry, he just does not want to talk. Says "yep" and "nah" and lets your
+small talk sit there. Warms up a fraction if you keep it light and quick.`,
+
+  monica: `Monica, looking for something and describing it badly — "the blue one,
+for the thing with your sinuses, my daughter usually gets it". Patient and
+apologetic about not knowing the name. Will take your suggestion seriously
+and ask what the difference is. Genuinely grateful when you get there.`,
+
+  glen: `Glen, unhappy at your counter. Something did not scan at the price on the
+shelf, and he has decided this is deliberate. Not shouting — worse, cold and
+certain, repeating "it says $6.99 on the shelf" while you talk. He wants to
+be agreed with before he will hear anything. Backs down completely once he
+feels heard.`,
+
+  trish: `Trish, a call centre agent. Following a script and reluctant to leave it.
 She re-verifies your identity, re-explains the policy you just said you
 understood, and answers a question adjacent to the one you asked. Not hostile
 — constrained. Precision and persistence move her; volume does not. Offers to
 "escalate" mainly as a way of ending the call.`,
 
-    `Leo, the store manager. Very apologetic, very slow to offer anything
+  leo: `Leo, the store manager. Very apologetic, very slow to offer anything
 concrete. He agrees with everything — "absolutely, I hear you, that's not
 good enough" — then explains why the refund is difficult. You have to name
 what you want and hold the line. He folds if you stay specific and calm.`,
 
-    `Diane, from the billing team. Meticulous to the point of pain. She
+  diane: `Diane, from the billing team. Meticulous to the point of pain. She
 confirms every detail twice, reads your own account number back to you
 slowly, and cannot proceed until each field matches. Polite, unhurried, and
 entirely unmoved by the fact that this has taken fifteen minutes. She does
 fix it in the end.`,
 
-    `Curtis, the delivery coordinator. Cheerful and useless. He puts you on
+  curtis: `Curtis, the delivery coordinator. Cheerful and useless. He puts you on
 hold to "just check something", comes back with nothing new, blames the
 depot, and offers a delivery window so wide it means nothing. Says "no
 worries" constantly. Pin him to a specific commitment or the call goes
 nowhere.`,
-  ],
 };
 
 /**
@@ -562,9 +683,9 @@ export function pickSetting(recent: SettingHistory = readHistory()): Setting {
   const scenario =
     pick(SCENARIOS[domain].filter((s) => !recent.scenarios.includes(s.label)), rnd) ??
     pick(SCENARIOS[domain], rnd);
-  const persona =
-    pick(PERSONAS[domain].filter((p) => !recent.personas.includes(p)), rnd) ??
-    pick(PERSONAS[domain], rnd);
+
+  const cast = (scenario?.personas ?? []).map((k) => PERSONAS[k]).filter((p): p is string => !!p);
+  const persona = pick(cast.filter((p) => !recent.personas.includes(p)), rnd) ?? pick(cast, rnd);
 
   return {
     scenario: scenario?.label ?? domain,
