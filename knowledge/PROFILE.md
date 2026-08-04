@@ -78,3 +78,21 @@ fill it in as you notice which questions catch you out.
   really.
 - Being in the country isn't the same as using the language. Most of my day
   is still in Chinese.
+
+## Things I think
+> Longer answers, for when someone actually wants to know. These are the
+> ones that matter — short answers are already fine; it's the real opinions
+> that fall apart.
+- Honestly, I'm not sure what the main problem is. Some days I think it's
+  that I'm introverted, so I don't say much. Other days I think it's
+  listening — I don't catch enough, so I don't risk it.
+- And I'm probably not getting enough hours in. My flatmates are Chinese and
+  I video call my boyfriend every day, so most days I speak more Chinese
+  than English.
+- Even on a good day it stays shallow. Short sentences, the same ones.
+  Nothing new going in.
+- That's the bit that bothers me. I can talk, but I can't say anything
+  interesting.
+- I have improved since I arrived. It's just nowhere near what I expected
+  from two or three years here.
+- I think I assumed being surrounded by it would be enough. It isn't.
