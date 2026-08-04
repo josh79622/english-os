@@ -589,16 +589,30 @@ function readProfile(): string[] {
   if (!fs.existsSync(paths.profile)) return [];
   const lines: string[] = [];
 
+  // A bullet may be wrapped across several source lines. Dropping everything
+  // that does not start with "- " silently truncated them mid-sentence.
+  let bullet: string | null = null;
+  const flush = () => {
+    if (bullet && !bullet.includes('TODO')) lines.push(bullet);
+    bullet = null;
+  };
+
   for (const raw of fs.readFileSync(paths.profile, 'utf8').split('\n')) {
     const line = raw.trim();
-    if (line.startsWith('# ')) continue;
-    if (line.startsWith('## ')) {
-      lines.push('', `**${line.slice(3)}**`);
+    if (line.startsWith('- ')) {
+      flush();
+      bullet = line;
       continue;
     }
-    if (!line.startsWith('- ') || line.includes('TODO')) continue;
-    lines.push(line);
+    if (bullet && line !== '' && !line.startsWith('#') && !line.startsWith('>')) {
+      bullet += ` ${line}`;
+      continue;
+    }
+    flush();
+    if (line.startsWith('# ')) continue;
+    if (line.startsWith('## ')) lines.push('', `**${line.slice(3)}**`);
   }
+  flush();
 
   // Headings whose bullets were all TODO would otherwise render empty.
   return lines

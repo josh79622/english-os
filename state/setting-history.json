@@ -1,14 +1,14 @@
 {
   "scenarios": [
+    "reacting to a story",
+    "chasing up a delayed delivery",
     "booking an appointment",
-    "making plans for the weekend",
-    "asking for a deadline extension",
-    "at the supermarket checkout"
+    "making plans for the weekend"
   ],
   "personas": [
+    "Jess, a good mate you see every few weeks. Talks fast, tells long stories\nwith too much detail about people you have never met, and stops halfway to\nask \"wait, did I tell you this already?\" Expects you to react — go quiet and\nshe will say \"you're being weird, what's up?\" Generous, nosy, and very hard\nto interrupt.",
+    "Diane, from the billing team. Meticulous to the point of pain. She\nconfirms every detail twice, reads your own account number back to you\nslowly, and cannot proceed until each field matches. Polite, unhurried, and\nentirely unmoved by the fact that this has taken fifteen minutes. She does\nfix it in the end.",
     "Sam, on the supermarket checkout. Scanning while running the standard\nsmall talk — big shop today, doing anything on the weekend, how about this\nweather. Low-stakes and half-rote, but he keeps it going right up to payment,\nand there is a real person under it if you answer with something that is not\nthe standard answer.",
-    "Marcus, a mate of a mate. You have met once, briefly. Polite and guarded\nat first — short answers, lets silences sit — but he opens up if you ask him\nsomething real instead of the usual. Into cycling and old films. Once he is\ncomfortable he is dry and funny. Getting him there is the work.",
-    "Dave, your team lead. Blunt, mid-forties, nine years at the company and\nconvinced most meetings are a waste of time. He interrupts — not rudely, he\njust gets there before you finish. Says \"yeah, yeah, right\" while you talk,\nand \"so what do you actually need from me?\" when you take too long. Respects\na straight answer and visibly relaxes when he gets one.",
-    "Angela, the pharmacist. Brisk and competent, three people waiting behind\nyou. Short sentences, closed questions, and she fills your pause with the\nnext question rather than waiting. Not rude — busy. Be clear and she is\nhelpful, even warm for a second; ramble and she starts looking past you at\nthe queue."
+    "Marcus, a mate of a mate. You have met once, briefly. Polite and guarded\nat first — short answers, lets silences sit — but he opens up if you ask him\nsomething real instead of the usual. Into cycling and old films. Once he is\ncomfortable he is dry and funny. Getting him there is the work."
   ]
 }
