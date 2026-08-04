@@ -1,0 +1,65 @@
+[
+  {
+    "said": "it's the man block",
+    "correct": "it's the main blocker",
+    "rule": "Use blocker to describe the main thing preventing progress.",
+    "key": "it's the man block→it's the main blocker",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
+  },
+  {
+    "said": "I will start deal with it",
+    "correct": "I'll start dealing with it.",
+    "rule": "After start, use either to deal or dealing.",
+    "key": "i will start deal with it→i'll start dealing with it.",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
+  },
+  {
+    "said": "while I'm do- while I'm do- dealing with it",
+    "correct": "while I'm dealing with it",
+    "rule": "No extra do before the -ing form.",
+    "key": "while i'm do- while i'm do- dealing with it→while i'm dealing with it",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
+  },
+  {
+    "said": "I got some problem",
+    "correct": "I run into some problems\" or \"I have some problems",
+    "rule": "Problems is usually plural in this context; run into is a natural collocation.",
+    "key": "i got some problem→i run into some problems\" or \"i have some problems",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
+  },
+  {
+    "said": "How did you do this, when you faced this kind of issues",
+    "correct": "How did you handle this when you faced this kind of issue?",
+    "rule": "Handle is more natural than do here; use this kind of issue or these kinds of issues.",
+    "key": "how did you do this, when you faced this kind of issues→how did you handle this when you faced this kind of issue?",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
+  },
+  {
+    "said": "I don't like them to just take it over",
+    "correct": "I don't want them to just take it over.",
+    "rule": "Want someone to... is the natural pattern.",
+    "key": "i don't like them to just take it over→i don't want them to just take it over.",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
+  },
+  {
+    "said": "meeting is something that would hold people...",
+    "correct": "Meetings take up people's time.",
+    "rule": "Take up someone's time is a common, natural expression.",
+    "key": "meeting is something that would hold people...→meetings take up people's time.",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
+  }
+]

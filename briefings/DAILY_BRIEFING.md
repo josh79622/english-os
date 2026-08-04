@@ -83,7 +83,12 @@ session dies, and that has already happened.
 - Aim for at least twenty minutes of real talk. If this topic runs out
   before then, your character finds another one — that is what people do.
 
-_Nothing scheduled today. Just play the scene._
+## NEW (introduce these)
+- light touch (expression) — "A small, informal action rather than something formal or heavy."
+- narrow the unknowns (expression) — "Reduce uncertainty before starting work."
+
+## STRETCH (one hard thing)
+- sanity-check my plan (pattern) — "Ask someone to quickly confirm whether your approach makes sense."
 
 ## HOW TO END THE SESSION
 Only I end the session. When I say we're done, drop the character and
