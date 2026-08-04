@@ -1,0 +1,24 @@
+{
+  "name": "english-os",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An English learning operating system: conversation, knowledge management, and intelligent review.",
+  "license": "UNLICENSED",
+  "scripts": {
+    "ingest": "tsx src/cli.ts ingest",
+    "briefing": "tsx src/cli.ts briefing",
+    "index": "tsx src/cli.ts index",
+    "health": "tsx src/cli.ts health",
+    "stats": "tsx src/cli.ts stats",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "tsx": "^4.23.5",
+    "typescript": "^7.0.2"
+  }
+}

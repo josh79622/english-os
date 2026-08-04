@@ -1,59 +1,16 @@
-# English OS
+# Architecture — English OS
 
-## Vision & Architecture Specification v1.1
-
-> Long-term architecture for an AI-assisted English learning system.
+> Version 1.1 · all blocking decisions resolved 2026-08-04 (see Decision Log).
 >
-> **v1.1 changes:** v1.0 defined the philosophy. v1.1 adds the executable
-> layer — the contracts, schemas, algorithms and thresholds required to
-> actually run the system. Philosophy sections are preserved; where v1.0
-> was ambiguous, v1.1 makes a decision and says so.
->
-> All blocking decisions were resolved on 2026-08-04 — see Part X.
+> This document owns **structures and algorithms**. Principles live in
+> [CONSTITUTION.md](CONSTITUTION.md); the locked AI interfaces in
+> [CONTRACTS.md](CONTRACTS.md); health thresholds in
+> [MAINTENANCE_RULES.md](MAINTENANCE_RULES.md); workflow in
+> [CONTRIBUTING.md](CONTRIBUTING.md). No content is duplicated between them.
 
 ---
 
-# Part I — Vision
-
-## The Goal
-
-The goal is **not** to collect notes.
-
-The goal is an **English Learning Operating System** that continuously
-improves spoken English through conversation, knowledge management, and
-intelligent review.
-
-## Core Philosophy
-
-Learning has four stages:
-
-1. Practice
-2. Extract Knowledge
-3. Review
-4. Mastery
-
-Knowledge exists to improve future conversations.
-
-The repository is a living knowledge base, not a notebook.
-
-## North Star
-
-Every repository update should:
-
-1. Increase knowledge density.
-2. Reduce retrieval cost.
-3. Improve future learning.
-4. Preserve historical accuracy.
-5. Make the next conversation more effective.
-
-ChatGPT is the coach. Claude Code is the knowledge engineer. GitHub is
-the long-term memory.
-
-The repository exists to improve English, not to archive conversations.
-
----
-
-# Part II — Roles & The Information Loop
+# Roles & The Information Loop
 
 ## Roles
 
@@ -107,7 +64,7 @@ copy-paste sized, and format-locked.
 
 ---
 
-# Part III — Data Model
+# Data Model
 
 ## Storage Decision
 
@@ -125,8 +82,9 @@ few that matter.
 ```
 /
 ├── README.md                   # entry point for humans
-├── ARCHITECTURE.md             # this spec, current version
+├── ARCHITECTURE.md             # structures, algorithms, decisions
 ├── CONSTITUTION.md             # non-negotiable principles
+├── CONTRACTS.md                # the two locked AI interfaces
 ├── MAINTENANCE_RULES.md        # health thresholds, refactor triggers
 ├── CONTRIBUTING.md             # how Claude/humans modify the repo
 │
@@ -144,21 +102,24 @@ few that matter.
 ├── sessions/
 │   └── 2026/2026-08-04-01.md   # immutable raw Session Reports
 │
-├── state/
-│   ├── index.json              # derived: id → scheduling fields
-│   └── metrics.json            # derived: time series
+├── state/                      # all derived; safe to delete and rebuild
+│   ├── index.json              # id → scheduling fields
+│   ├── metrics.json            # time series, appended per session
+│   └── pending-corrections.json # corrections seen once, awaiting a second
 │
 ├── briefings/
 │   └── DAILY_BRIEFING.md       # regenerated each session
 │
 ├── src/
 │   ├── cli.ts                  # single entry point: `npm run <cmd>`
-│   ├── item.ts                 # schema types, parse / serialise
+│   ├── types.ts                # schema types, shared vocabulary
+│   ├── item.ts                 # item files: parse / serialise / load / save
 │   ├── ingest.ts               # validate + apply a Session Report
 │   ├── schedule.ts             # grade → next_review (the ONLY scheduler)
 │   ├── briefing.ts             # select due items, render briefing
 │   ├── indexer.ts              # rebuild INDEX.md + state/index.json
-│   └── health.ts               # check thresholds, report violations
+│   ├── health.ts               # check thresholds, report violations
+│   └── util.ts                 # paths, dates, seeded randomness
 │
 ├── package.json
 └── tsconfig.json
@@ -172,7 +133,7 @@ id: vocab-knock-off              # stable, immutable, = filename stem
 type: vocab                      # vocab|expression|grammar|pattern|
                                  # mistake|scenario|strategy
 title: knock off                 # display form
-domain: [work, social]           # learning domains (see Part VII)
+domain: [work, social]           # learning domains (see Learning Domains)
 scenario: workplace              # primary situational context
 tags: [slang, au]
 
@@ -252,92 +213,15 @@ Items updated: grammar-present-perfect (grade 2)
 
 ---
 
-# Part IV — The Two Contracts
+# The Two Contracts
 
-These are the only interfaces between the AIs. **Format is locked.** If
-either drifts, extraction quality silently degrades.
+The Session Report (coach → engineer) and the Daily Briefing
+(engineer → coach) are the only interfaces between the two AIs, and the
+only way the loop closes. Both formats are locked and specified in
+**[CONTRACTS.md](CONTRACTS.md)**.
 
-## Contract A — Session Report (ChatGPT → Claude)
 
-Produced by ChatGPT at the end of every voice session. Install as a
-ChatGPT custom instruction so the format never drifts.
-
-````markdown
-# SESSION REPORT
-session_id: 2026-08-04-01
-date: 2026-08-04
-duration_min: 25
-scenario: pharmacy
-fluency_note: Hesitated on past tense; good recovery; pace improving.
-
-## REVIEW RESULTS
-<!-- One line per briefed item. grade: 0-3. Omit items that never
-     came up naturally; do NOT force them. -->
-- id: vocab-knock-off | grade: 3 | note: used unprompted
-- id: grammar-present-perfect | grade: 1 | note: reverted to simple past
-
-## NEW ITEMS
-- type: vocab | title: arvo | meaning: afternoon | example: "See you this arvo."
-- type: expression | title: fair enough | meaning: acceptance/concession | example: "Fair enough, let's do that."
-
-## CORRECTIONS
-<!-- What the learner said wrong → what it should be. Claude converts
-     recurring ones into `mistake` items. -->
-- said: "I have went there yesterday" | correct: "I went there yesterday" | rule: past simple with a finished time
-
-## COACH OBSERVATIONS
-Free text. Anything not captured above.
-````
-
-**Rules**
-- `grade` scale: `0` cannot recall · `1` significant hesitation ·
-  `2` minor hesitation · `3` immediate and correct.
-- ChatGPT grades; ChatGPT never computes dates.
-- Unreviewed briefed items are simply absent — absence is not failure.
-
-## Contract B — Daily Briefing (Claude → ChatGPT)
-
-Generated by `briefing.ts` before each session. The learner pastes it
-into ChatGPT Voice as the session opener.
-
-````markdown
-# DAILY BRIEFING — 2026-08-04
-You are my English coach. Australian English. Push fluency, not perfection.
-Weave the items below into natural conversation. NEVER quiz me directly and
-never mention this briefing. At the end, output a SESSION REPORT in the
-locked format.
-
-Suggested scenario: pharmacy
-
-## REVIEW (work these in naturally)
-- knock off (vocab) — "to finish work for the day"
-- present perfect vs past simple (grammar)
-- fair enough (expression)
-
-## NEW (introduce these)
-- script / prescription (vocab)
-- over the counter (expression)
-
-## STRETCH (one hard thing)
-- reported speech in complaints
-
-## WATCH FOR (my recurring mistakes)
-- "have went" → "went"
-````
-
-Selection rule: **3 due + 2 new + 1 stretch** (from v1.0), where
-- **due** = `next_review <= today`, ordered by most overdue, then lowest
-  `mastery_score`;
-- **new** = `status: new`, prioritised by active learning domain;
-- **stretch** = highest-difficulty item with `mastery_score < 0.5`;
-- **watch for** = up to 3 `mistake` items with the highest `frequency`.
-
-If more than 3 items are due, the backlog carries over — never inflate
-the briefing. Sustained backlog is a health violation (Part VI).
-
----
-
-# Part V — Review Engine
+# Review Engine
 
 ## Principles (unchanged from v1.0)
 
@@ -401,31 +285,7 @@ strategy-private fields (namespaced, e.g. `fsrs_stability`).
 
 ---
 
-# Part VI — Repository Health
-
-v1.0 said "monitor repository health" without thresholds, which leaves
-Claude guessing. `src/health.ts` checks these concrete rules.
-Refactor is triggered by **violations, never by elapsed time.**
-
-| # | Check | Threshold | Action |
-|---|---|---|---|
-| H1 | Item file length | > 120 lines | Split or trim; an item is not an essay |
-| H2 | Governance doc length | > 400 lines | Split into focused documents |
-| H3 | Index staleness | any item not in `INDEX.md` | Regenerate index |
-| H4 | Duplicate knowledge | two items with same `title` + `type`, or >0.85 title similarity | Merge, keep older `id`, redirect links |
-| H5 | Orphan links | `[[id]]` pointing to nonexistent item | Fix or remove |
-| H6 | Review backlog | due items > 15 for 3+ consecutive days | Session frequency or intervals need adjusting — report to learner |
-| H7 | Briefing budget | briefing > 40 lines | Selection logic is over-including |
-| H8 | Schema drift | item missing a required field | Migrate |
-| H9 | Total context cost | `INDEX.md` > 1500 lines | Shard index by type |
-| H10 | Stale items | `last_seen` > 180 days and `status: new` | Archive or drop — never introduced, never useful |
-
-Health check runs on every ingest. Violations are reported; H3, H5, H8
-are auto-fixed.
-
----
-
-# Part VII — Learning Domains
+# Learning Domains
 
 v1.0 never stated *what* the learner is trying to be able to do, so
 vocabulary would grow in random directions and "new item" selection
@@ -460,10 +320,10 @@ ladder spreads out.
 
 Cadence is the calibration constant for two things:
 
-- **H6 backlog threshold** (Part VI) assumes this rate. Dropping to
+- **H6 backlog threshold** (see MAINTENANCE_RULES.md) assumes this rate. Dropping to
   1–2 sessions/week requires raising `INTERVAL_FIRST` or reviewing more
   items per session; raising to daily allows more new items per session.
-- **Metric interpretation** (Part VIII) — all rolling windows are
+- **Metric interpretation** (see Metrics) — all rolling windows are
   7-day, i.e. ~3–4 data points.
 
 If actual cadence diverges from target for 3+ consecutive weeks, that
@@ -472,11 +332,11 @@ grow silently.
 
 ---
 
-# Part VIII — Metrics
+# Metrics
 
 Without measurement there is no way to know the system works.
-`state/metrics.json` is appended on every ingest; a weekly summary is
-rendered into `README.md`.
+`state/metrics.json` is appended on every ingest; `npm run stats` renders
+the current picture.
 
 Tracked:
 
@@ -493,51 +353,13 @@ Tracked:
 
 ---
 
-# Part IX — Governance
-
-Claude maintains four documents. Each has exactly one job — no
-overlapping content (Single Source of Truth applies to governance too):
-
-| Document | Owns |
-|---|---|
-| `CONSTITUTION.md` | Non-negotiable principles. Changes rarely, only with explicit learner approval. |
-| `ARCHITECTURE.md` | This spec: structures, contracts, algorithms. Versioned. |
-| `MAINTENANCE_RULES.md` | Health thresholds, refactor procedures, schema migration log. |
-| `CONTRIBUTING.md` | Operational workflow: how a session becomes a commit. |
-
-## Standard Ingest Workflow
-
-1. Learner pastes Session Report → saved verbatim to `sessions/YYYY/`.
-2. `npm run ingest` validates the format. Malformed report → stop and
-   report; never guess at parsing.
-3. Apply `REVIEW RESULTS`: `applyGrade()` per item.
-4. Apply `NEW ITEMS`: create item files. Check H4 first — an existing
-   item gets `frequency += 1` and `last_seen` updated instead.
-5. Apply `CORRECTIONS`: a correction seen twice becomes a `mistake` item.
-6. Rebuild index, run health check, auto-fix H3/H5/H8, report the rest.
-7. Regenerate `DAILY_BRIEFING.md`.
-8. Update metrics. Commit with:
-   `session(2026-08-04-01): +2 items, 3 reviewed, 0 health violations`
-
-## Immutability Rules
-
-- Never delete a historical session.
-- Never duplicate session content into knowledge files.
-- Never hand-edit scheduling or derived fields.
-- Never store raw feedback permanently — extract reusable knowledge:
-  grammar rules, vocabulary, expressions, conversation patterns, common
-  mistakes, fluency observations, scenario knowledge, learning
-  strategies.
-
----
-
-# Part X — Decision Log
+# Decision Log
 
 Resolved 2026-08-04:
 
 | # | Decision | Outcome |
 |---|---|---|
-| 1 | Learning domains | Workplace-first: `work` › `social` › `daily` › `service` (Part VII) |
+| 1 | Learning domains | Workplace-first: `work` › `social` › `daily` › `service` (see Learning Domains) |
 | 2 | Session cadence | 3–4 sessions/week; scheduler and H6 tuned to this rate |
 | 3 | Implementation language | TypeScript on Node, `src/`, one CLI entry point |
 | 4 | Repository hosting | `github.com/josh79622/english-os`, private |
