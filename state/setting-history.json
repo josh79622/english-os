@@ -1,14 +1,14 @@
 {
   "scenarios": [
+    "telling a story about yourself",
     "booking an appointment",
     "meeting someone new",
-    "asking for directions",
-    "making a complaint politely"
+    "asking for directions"
   ],
   "personas": [
+    "Ellie, an old friend back in town after a year overseas. Delighted to see\nyou and full of questions — what happened with the job, are you still in the\nsame place, did that thing ever get sorted. She remembers details you forgot\nyou told her. Interrupts with \"no way, really?\" Wants the actual story, not\nthe summary.",
     "Rachel, the clinic receptionist. Juggling the phone, the front desk and a\ncomputer that is slow today. She puts you on hold mid-sentence, comes back,\nasks you to repeat what you just said, and is apologetic about all of it. She\nneeds your details in a specific order and will restart you if you give them\nin a different one.",
     "Harriet, seated next to you and equally stranded. Late twenties, works in\nsomething she describes vaguely and clearly does not want to talk about.\nOpens with the obvious questions and is visibly relieved when you ask her\nsomething better. Laughs easily once she relaxes. If the conversation dies\nshe will let it, and check her phone.",
-    "Ruth, waiting at the same crossing. Sixties, out with a shopping trolley,\nin no hurry at all. Happy to be asked and gives directions the long way round\n— by the old post office, past where the bakery used to be — with landmarks\nthat assume you have lived here for years. Will check you understood, twice.",
-    "Curtis, the delivery coordinator. Cheerful and useless. He puts you on\nhold to \"just check something\", comes back with nothing new, blames the\ndepot, and offers a delivery window so wide it means nothing. Says \"no\nworries\" constantly. Pin him to a specific commitment or the call goes\nnowhere."
+    "Ruth, waiting at the same crossing. Sixties, out with a shopping trolley,\nin no hurry at all. Happy to be asked and gives directions the long way round\n— by the old post office, past where the bakery used to be — with landmarks\nthat assume you have lived here for years. Will check you understood, twice."
   ]
 }

@@ -49,6 +49,10 @@ fill it in as you notice which questions catch you out.
 - I like a good series, but they eat too much time for where I am now.
 - I used to follow badminton closely. Since Tai Tzu-ying retired I've
   barely watched.
+- I'm all ears for gossip. Friends' love lives, who's sleeping with who —
+  the messier it is, the more I want to know.
+- I'd much rather be the one listening, though. I'm no good at making my
+  own stories sound interesting.
 
 ## People
 - My boyfriend's in Taipei. I stay at his when I'm home.

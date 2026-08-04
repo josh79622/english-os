@@ -45,6 +45,15 @@ interface Scenario {
    * checkout operator take a dentist booking.
    */
   personas: string[];
+  /**
+   * What the coach must make up, when the scene depends on material the
+   * learner cannot hold. Normally the coach is forbidden from inventing
+   * anything — that rule exists because a coach that invents detail
+   * interrogates the learner about a story they were never given. But in a
+   * scene where the learner is the listener, the story is the coach's to
+   * bring, and the blanket ban would leave nothing to react to.
+   */
+  coachInvents?: string;
 }
 
 /** Scenario suggestions per domain. Extend freely; this is not schema. */
@@ -143,6 +152,41 @@ is essential.`,
     },
   ],
   social: [
+    {
+      label: 'a friend spilling gossip',
+      premise: `The pub, a Friday, no one going anywhere. Your friend has been
+sitting on something about a couple you both know and has decided tonight is
+the night. You are the listener here, and that is the whole exercise: keep
+them talking. React, ask the next question, do not let it stop at the
+headline. Frank, the way close friends actually talk — the details are
+half the point.`,
+      facts: [
+        'You both know Anna from uni. She and Rob have been together three years.',
+        'You have met Rob twice. You thought he was fine. Nothing more than fine.',
+        'You picked up months ago that something was off, and you did not ask.',
+        'It is loud in here and neither of you is leaving any time soon.',
+        'You are allowed to ask anything. That is the point of tonight.',
+      ],
+      coachInvents: `what has actually been going on with Anna and Rob, and it
+should be worth the telling.`,
+      personas: ['jess', 'ellie'],
+    },
+    {
+      label: 'telling a story about yourself',
+      premise: `Your turn tonight. Something happened to you a couple of weeks
+ago and it is a genuinely good story, but you are bad at telling those — you
+tend to give away the ending, flatten it out, and finish before it lands. The
+beats are below. Tell it properly: hold the turn back, let it build.`,
+      facts: [
+        'Two weeks ago you locked yourself out at eleven at night. Raining.',
+        'Phone dead, so no way to reach the building manager.',
+        'Both flatmates were away for the weekend.',
+        'You gave up and sat in the 24-hour McDonald\'s down the road until six.',
+        'A stranger there bought you a coffee and talked to you for an hour.',
+        'You never got his name, and you have thought about it since.',
+      ],
+      personas: ['jess', 'ellie', 'marcus'],
+    },
     {
       label: 'small talk at a barbecue',
       premise: `Saturday afternoon at a friend's place. You know the host and
@@ -587,6 +631,7 @@ export interface Briefing {
   scenario: string;
   premise: string;
   facts: string[];
+  coachInvents?: string;
   persona: string;
   review: Item[];
   fresh: Item[];
@@ -653,7 +698,10 @@ function difficultyRank(item: Item): number {
   return { easy: 0, medium: 1, hard: 2 }[item.difficulty];
 }
 
-export type Setting = Pick<Briefing, 'scenario' | 'premise' | 'facts' | 'persona'>;
+export type Setting = Pick<
+  Briefing,
+  'scenario' | 'premise' | 'facts' | 'persona' | 'coachInvents'
+>;
 
 /** How many recent settings to avoid repeating. */
 const HISTORY_AVOID = 4;
@@ -691,6 +739,7 @@ export function pickSetting(recent: SettingHistory = readHistory()): Setting {
     scenario: scenario?.label ?? domain,
     premise: scenario?.premise ?? `An ordinary ${domain} conversation.`,
     facts: scenario?.facts ?? [],
+    ...(scenario?.coachInvents ? { coachInvents: scenario.coachInvents } : {}),
     persona: persona ?? 'a friendly Australian stranger.',
   };
 }
@@ -897,9 +946,19 @@ export function renderBriefing(b: Briefing): string {
     '',
     ...b.facts.map((f) => `- ${f}`),
     '',
-    'So: do not invent competing details. No other project names, no other',
-    'numbers, no events that are not here. Build your side of the scene',
-    'around these.',
+    ...(b.coachInvents
+      ? [
+          `The story is yours to bring — ${b.coachInvents.replace(/\s+/g, ' ')}`,
+          'Invent it properly:',
+          'names, specifics, the bits people actually want to know. Keep my',
+          'facts above true and build it around them. Do not summarise it in',
+          'one go — let me pull it out of you.',
+        ]
+      : [
+          'So: do not invent competing details. No other project names, no',
+          'other numbers, no events that are not here. Build your side of the',
+          'scene around these.',
+        ]),
     '',
     'And when I hesitate, it is usually because I do not know what to say,',
     'not how to say it. Turn your open question into a choice from the list',
