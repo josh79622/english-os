@@ -34,10 +34,25 @@ export function writeJson(file: string, value: unknown): void {
 
 // --- dates -----------------------------------------------------------------
 
+/**
+ * The learner's calendar date, not UTC's.
+ *
+ * `toISOString()` would be wrong here: east of Greenwich it reports yesterday
+ * until mid-morning local time, so a briefing generated before breakfast in
+ * Sydney was dated a day behind — and everything downstream (due items,
+ * overdue counts, the next review date) shifted with it.
+ */
 export function today(): IsoDate {
-  return toIso(new Date());
+  const d = new Date();
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
+/**
+ * UTC-based by design — the only caller is `addDays`, which anchors its Date
+ * at UTC midnight precisely so date arithmetic never touches a timezone or a
+ * DST boundary. Do not "fix" this to local time.
+ */
 export function toIso(d: Date): IsoDate {
   return d.toISOString().slice(0, 10);
 }
