@@ -84,11 +84,11 @@ session dies, and that has already happened.
   before then, your character finds another one — that is what people do.
 
 ## NEW (introduce these)
-- light touch (expression) — "A small, informal action rather than something formal or heavy."
-- narrow the unknowns (expression) — "Reduce uncertainty before starting work."
+- expression-light-touch — light touch (expression) — "A small, informal action rather than something formal or heavy."
+- expression-narrow-the-unknowns — narrow the unknowns (expression) — "Reduce uncertainty before starting work."
 
 ## STRETCH (one hard thing)
-- sanity-check my plan (pattern) — "Ask someone to quickly confirm whether your approach makes sense."
+- pattern-sanity-check-my-plan — sanity-check my plan (pattern) — "Ask someone to quickly confirm whether your approach makes sense."
 
 ## HOW TO END THE SESSION
 Only I end the session. When I say we're done, drop the character and
@@ -117,6 +117,19 @@ fluency_note: <one or two sentences>
 Grading: 0 = cannot recall · 1 = significant hesitation · 2 = minor
 hesitation · 3 = immediate and correct.
 
-Only report REVIEW RESULTS for briefed items that actually came up on
-their own. Omit the rest — never force an item in just to grade it.
+REVIEW RESULTS is only ever about items listed under REVIEW, NEW or
+STRETCH above. Each of those lines starts with its id — copy that id
+character for character, and use nothing else. Never invent
+an id, and never grade something I was not briefed on. If none of those
+items came up on their own, or there were none to begin with, leave the
+section empty — an empty section is a correct answer and inventing
+entries to fill it silently corrupts my knowledge base.
+
+NEW ITEMS is where anything worth practising goes, including advice you
+would otherwise write in COACH OBSERVATIONS. If you find yourself telling
+me a phrase I should be using — a way to ask for clarification, a way to
+buy time, a way to interrupt politely — that is a `strategy` item, not
+an observation. Only what is in NEW ITEMS comes back to me in a future
+session; COACH OBSERVATIONS is read once and never scheduled.
+
 You grade. You never compute review dates.
