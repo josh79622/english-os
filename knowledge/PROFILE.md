@@ -52,7 +52,10 @@ fill it in as you notice which questions catch you out.
 
 ## People
 - My boyfriend's in Taipei. I stay at his when I'm home.
-- TODO — family, in one line each
+- Back home it's my parents and one older brother.
+- My brother's a teacher — history, geography and civics. He does a school
+  and a cram school.
+- I go back twice a year. Last time was early June to early July.
 - TODO — a close friend or two, and how you know them
 
 ## Handy opinions
@@ -71,4 +74,7 @@ fill it in as you notice which questions catch you out.
   well enough to really show anyone around, though.
 - Other things people mention: Gaomei Wetlands, Fengjia night market,
   Taroko Gorge, Green Island.
-- TODO — something you have changed your mind about
+- I assumed my English would come along fast once I moved here. It hasn't,
+  really.
+- Being in the country isn't the same as using the language. Most of my day
+  is still in Chinese.
