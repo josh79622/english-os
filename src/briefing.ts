@@ -17,16 +17,165 @@ export const NEW_COUNT = 2;
 export const STRETCH_COUNT = 1;
 export const WATCH_COUNT = 3;
 
+interface Scenario {
+  /** Short label. Goes in the Session Report's `scenario:` field. */
+  label: string;
+  /**
+   * The premise, addressed to the learner. Answers the three questions a bare
+   * label leaves open: who am I here, what has already happened, and what do I
+   * want out of this. Without it the session opens mid-situation with nothing
+   * to push against — which is exactly how the first attempt failed.
+   */
+  premise: string;
+}
+
 /** Scenario suggestions per domain. Extend freely; this is not schema. */
-const SCENARIOS: Record<Domain, string[]> = {
-  work: ['standup update', 'disagreeing in a meeting', 'asking for a deadline extension',
-         'explaining a delay', 'one-on-one with a manager', 'negotiating scope'],
-  social: ['small talk at a barbecue', 'catching up with a friend', 'meeting someone new',
-           'making plans for the weekend', 'reacting to a story'],
-  daily: ['at the pharmacy', 'ordering at a cafe', 'booking an appointment',
-          'asking for directions', 'at the supermarket checkout'],
-  service: ['returning a faulty item', 'calling about a bill', 'making a complaint politely',
-            'chasing up a delayed delivery'],
+const SCENARIOS: Record<Domain, Scenario[]> = {
+  work: [
+    {
+      label: 'standup update',
+      premise: `It is Tuesday morning. You are on the team building the new
+checkout flow. Yesterday you finished the payment validation, but you also
+found a bug in someone else's code that is going to slow you down today. Give
+your update, and decide how much to say about the bug.`,
+    },
+    {
+      label: 'disagreeing in a meeting',
+      premise: `The team wants to ship the redesign next Friday. You think it
+is too early — the error handling is barely tested and you will be the one
+fixing it at midnight. Everyone else seems fine with the date. You have to
+say something, and you are the only one who is going to.`,
+    },
+    {
+      label: 'asking for a deadline extension',
+      premise: `You promised something for Thursday and it will not be ready.
+Part of that is a dependency you did not control; part of it is that you
+underestimated the work. You need until the middle of next week. You have not
+asked for an extension before, so this is the first time.`,
+    },
+    {
+      label: 'explaining a delay',
+      premise: `A piece of work is two weeks behind and it is now visible to
+people outside the team. Nobody has accused you of anything, but you have
+been asked to explain what happened. The real reason is a mix of a vague
+brief, a sick teammate, and a decision you would make differently now.`,
+    },
+    {
+      label: 'one-on-one with a manager',
+      premise: `Your regular one-on-one. Things are fine, which is the
+problem — you have been doing the same kind of work for eight months and you
+want something harder, ideally the migration project everyone is talking
+about. You have not raised this before and you are not sure how to.`,
+    },
+    {
+      label: 'negotiating scope',
+      premise: `A request has landed that would take six weeks. You have
+three. You are not going to say no — you want to find the version that fits,
+and get agreement on what gets dropped. The other person believes all of it
+is essential.`,
+    },
+  ],
+  social: [
+    {
+      label: 'small talk at a barbecue',
+      premise: `Saturday afternoon at a friend's place. You know the host and
+almost nobody else. You are standing near the food with a drink, and someone
+has just started talking to you. You have nowhere to be for two hours.`,
+    },
+    {
+      label: 'catching up with a friend',
+      premise: `Coffee with someone you have not seen in a few months. A lot
+has happened on your side — work, a trip, something you have been thinking
+about changing. They will ask. Decide how much you actually want to get
+into.`,
+    },
+    {
+      label: 'meeting someone new',
+      premise: `A friend's dinner. You have been seated next to someone you
+have never met and the friend has just been pulled into the kitchen. It is
+the two of you now, and neither of you started this.`,
+    },
+    {
+      label: 'making plans for the weekend',
+      premise: `It is Thursday. You want to do something on the weekend and
+so does the other person, but your ideas are not the same — one of you wants
+to go out of the city, the other wants a quiet one. Both of you are being
+polite about it, which is making it slow.`,
+    },
+    {
+      label: 'reacting to a story',
+      premise: `Someone is telling you about something that went badly for
+them — a job that fell through, a trip that went wrong. They are not asking
+for advice. Your job in this conversation is to be good company: react, ask
+the right questions, and know when to just listen.`,
+    },
+  ],
+  daily: [
+    {
+      label: 'at the pharmacy',
+      premise: `You have had a cough for about ten days. It is worse at
+night, and you have already tried the obvious things. You do not have a
+prescription and you are not sure whether you need to see a doctor. You want
+to explain the symptoms clearly enough to get a real answer.`,
+    },
+    {
+      label: 'ordering at a cafe',
+      premise: `A cafe you have not been to before. You want a coffee and
+something to eat, but you have a question about one of the items and you are
+also not certain what half the menu names mean. The queue behind you is
+short. There is time to ask.`,
+    },
+    {
+      label: 'booking an appointment',
+      premise: `You need an appointment in the next two weeks. You can do
+mornings, and Wednesdays are impossible. The first slot you are offered will
+not work, and you will have to negotiate a bit without being difficult about
+it.`,
+    },
+    {
+      label: 'asking for directions',
+      premise: `You are trying to get to an address about fifteen minutes
+away and your phone is nearly dead. You have a rough idea of the direction
+but not the street. You are going to have to describe where you are trying to
+get to, and then actually follow the answer.`,
+    },
+    {
+      label: 'at the supermarket checkout',
+      premise: `A normal shop, end of the day. Nothing is wrong. This is the
+low-stakes one: the whole exercise is holding a light, friendly exchange with
+a stranger for two minutes without it going flat.`,
+    },
+  ],
+  service: [
+    {
+      label: 'returning a faulty item',
+      premise: `You bought headphones five weeks ago and the left side has
+stopped working. You have the receipt but not the box. The store's policy
+says thirty days, which has passed. You believe a five-week-old product
+failing is not your problem, and you want a refund rather than a repair.`,
+    },
+    {
+      label: 'calling about a bill',
+      premise: `Your bill this month is roughly double what it usually is.
+You cannot see anything on it that explains the difference, and you are
+fairly sure you did not change anything. You want it explained, and if it is
+wrong, corrected — today, not "within five business days".`,
+    },
+    {
+      label: 'making a complaint politely',
+      premise: `Something went genuinely wrong — a booking that was not
+honoured, a service that was not delivered as promised. You are annoyed. You
+also know that being annoyed at the person in front of you will not help.
+The task is to be firm and clear without turning it into a fight.`,
+    },
+    {
+      label: 'chasing up a delayed delivery',
+      premise: `Something you ordered was due nine days ago. Tracking has not
+updated in a week. This is your second call — the first one ended with a
+promise to "look into it" and nothing happened. You want a date you can
+actually rely on this time.`,
+    },
+  ],
 };
 
 /**
@@ -154,6 +303,7 @@ const DOMAIN_WEIGHTS = [0.5, 0.25, 0.15, 0.1];
 export interface Briefing {
   date: string;
   scenario: string;
+  premise: string;
   persona: string;
   review: Item[];
   fresh: Item[];
@@ -222,13 +372,15 @@ function difficultyRank(item: Item): number {
  *
  * Seeded by date so regenerating today's briefing never changes it.
  */
-function suggestSetting(date: string): { scenario: string; persona: string } {
+function suggestSetting(date: string): Pick<Briefing, 'scenario' | 'premise' | 'persona'> {
   const rnd = seededRandom(date);
   const domain = weightedPick(DOMAINS, DOMAIN_WEIGHTS, rnd);
   const scenarios = SCENARIOS[domain];
   const personas = PERSONAS[domain];
+  const scenario = scenarios[Math.floor(rnd() * scenarios.length)];
   return {
-    scenario: scenarios[Math.floor(rnd() * scenarios.length)] ?? domain,
+    scenario: scenario?.label ?? domain,
+    premise: scenario?.premise ?? `An ordinary ${domain} conversation.`,
     persona: personas[Math.floor(rnd() * personas.length)] ?? 'a friendly Australian stranger.',
   };
 }
@@ -319,16 +471,27 @@ export function renderBriefing(b: Briefing): string {
     'when meaning breaks. Weave the items below into natural conversation.',
     'NEVER quiz me directly and never mention this briefing.',
     '',
+    '## THE SITUATION',
+    `Setting: ${b.scenario}.`,
+    '',
+    b.premise,
+    '',
     '## WHO YOU ARE TODAY',
     `Play ${b.persona}`,
     '',
-    `Setting: ${b.scenario}.`,
+    '## HOW TO START',
+    'Do not drop me straight into the middle of it. Open by telling me the',
+    'situation in two or three sentences — where we are, who you are, what',
+    'has just happened — then start in character with something ordinary: a',
+    'greeting, a bit of small talk, an easy question. Let me settle in for a',
+    'few exchanges before the real business comes up. If I go quiet or sound',
+    'lost, give me a way in rather than waiting.',
     '',
-    'Stay in character for the whole conversation. Have opinions, react,',
-    'disagree, change the subject when a real person would. Do not narrate',
-    'the roleplay and do not step out of it to explain or praise my English',
-    '— corrections belong in the Session Report at the end, not mid-scene.',
-    'Drop the character only if I say "pause".',
+    'After that, stay in character for the whole conversation. Have opinions,',
+    'react, disagree, change the subject when a real person would. Do not',
+    'narrate the roleplay and do not step out of it to explain or praise my',
+    'English — corrections belong in the Session Report at the end, not',
+    'mid-scene. Drop the character only if I say "pause".',
     '',
     renderSelection(b),
     REPORT_SPEC,

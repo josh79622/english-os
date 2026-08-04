@@ -66,14 +66,21 @@ Push fluency, not perfection — let small errors go, interrupt only
 when meaning breaks. Weave the items below into natural conversation.
 NEVER quiz me directly and never mention this briefing.
 
+## THE SITUATION
+Setting: at the pharmacy.
+
+You have had a cough for about ten days. It is worse at night, and you have
+already tried the obvious things. ...
+
 ## WHO YOU ARE TODAY
 Play Angela, the pharmacist. Brisk and competent, three people waiting behind
 you. Short sentences, closed questions, and she fills your pause with the
 next question rather than waiting. ...
 
-Setting: at the pharmacy.
-
-Stay in character for the whole conversation. ...
+## HOW TO START
+Do not drop me straight into the middle of it. Open by telling me the
+situation in two or three sentences ... then start in character with
+something ordinary. ...
 
 ## REVIEW (work these in naturally)
 - knock off (vocab) — "to finish work for the day"
@@ -104,6 +111,12 @@ Selection rule: **3 due + 2 new + 1 stretch** (from v1.0), where
 Scenario and persona are drawn from the same domain, seeded by date — the
 same day always yields the same setting, so regenerating a briefing mid-day
 never moves the ground under a session.
+
+Every scenario carries a **premise**: who the learner is in this situation,
+what has already happened, and what they want out of it. A bare label opens
+the session mid-situation with nothing to push against. The coach is also
+told to set the scene and warm up before the real business — a session that
+starts at the conflict is a session the learner cannot enter.
 
 If more than 3 items are due, the backlog carries over — never inflate
 the briefing. Sustained backlog is a health violation (see MAINTENANCE_RULES.md).
