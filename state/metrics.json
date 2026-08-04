@@ -2,15 +2,15 @@
   {
     "date": "2026-08-05",
     "session_id": "2026-08-05-01",
-    "items_total": 3,
+    "items_total": 6,
     "by_status": {
-      "new": 3,
+      "new": 6,
       "learning": 0,
       "familiar": 0,
       "mastered": 0
     },
-    "reviews": 3,
-    "mean_grade": 3,
+    "reviews": 0,
+    "mean_grade": null,
     "items_created": 3,
     "due_backlog": 0
   }

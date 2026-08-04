@@ -18,7 +18,7 @@ import { rebuildIndex } from './indexer.ts';
 import { writeBriefing } from './briefing.ts';
 import { checkHealth } from './health.ts';
 import type { Violation } from './health.ts';
-import { paths, readJson, writeJson, writeFile, today, isIsoDate } from './util.ts';
+import { paths, readJson, writeJson, writeFile, today, nowStamp, isIsoDate } from './util.ts';
 
 export class ReportError extends Error {}
 
@@ -142,6 +142,9 @@ export function ingest(file: string): IngestResult {
   const updated: string[] = [];
   const reinforced: string[] = [];
   const unknown: string[] = [];
+  /** Grades that reached a real item. Reported grades for unknown ids are not
+   *  reviews of anything and must not reach the metrics. */
+  const applied: Grade[] = [];
 
   // 3. REVIEW RESULTS
   for (const r of report.reviews) {
@@ -152,6 +155,7 @@ export function ingest(file: string): IngestResult {
     }
     applyGrade(item, r.grade, report.date, report.session_id);
     item.frequency += 1;
+    applied.push(r.grade);
     updated.push(`${item.id} (grade ${r.grade})`);
   }
 
@@ -207,14 +211,14 @@ export function ingest(file: string): IngestResult {
       report.raw,
       '',
       '---',
-      `Ingested: ${new Date().toISOString().slice(0, 16).replace('T', ' ')}`,
+      `Ingested: ${nowStamp()}`,
       `Items created: ${created.join(', ') || '—'}`,
       `Items updated: ${updated.join(', ') || '—'}`,
     ].join('\n'),
   );
 
   // 8. Metrics.
-  recordMetrics(report, all, created.length, briefing.backlog);
+  recordMetrics(report, all, applied, created.length, briefing.backlog);
 
   return { report, created, updated, reinforced, unknown, violations: checkHealth() };
 }
@@ -267,6 +271,7 @@ function applyCorrections(report: SessionReport, items: Map<string, Item>): stri
 function recordMetrics(
   report: SessionReport,
   items: Item[],
+  grades: Grade[],
   createdCount: number,
   backlog: number,
 ): void {
@@ -274,7 +279,6 @@ function recordMetrics(
   const byStatus = { new: 0, learning: 0, familiar: 0, mastered: 0 } as Record<Status, number>;
   for (const i of items) byStatus[i.status] += 1;
 
-  const grades = report.reviews.map((r) => r.grade);
   metrics.push({
     date: report.date,
     session_id: report.session_id,

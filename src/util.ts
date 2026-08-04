@@ -48,6 +48,13 @@ export function today(): IsoDate {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
+/** Local `YYYY-MM-DD HH:MM`, for stamping when something happened. */
+export function nowStamp(): string {
+  const d = new Date();
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${today()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
 /**
  * UTC-based by design — the only caller is `addDays`, which anchors its Date
  * at UTC midnight precisely so date arithmetic never touches a timezone or a
