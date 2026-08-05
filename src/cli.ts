@@ -5,11 +5,11 @@
  */
 
 import { ingest, summariseMetrics, ReportError } from './ingest.ts';
-import { writeBriefing, renderBriefing } from './briefing.ts';
+import { writeBriefing, renderBriefing, renderSetup } from './briefing.ts';
 import { rebuildIndex } from './indexer.ts';
 import { checkHealth } from './health.ts';
 import { ItemError } from './item.ts';
-import { paths, today } from './util.ts';
+import { paths, today, writeFile } from './util.ts';
 import path from 'node:path';
 import { ROOT } from './util.ts';
 
@@ -45,6 +45,14 @@ function main(argv: string[]): number {
       if (b.backlog > b.review.length) {
         console.log(`Note: ${b.backlog} items are due; ${b.review.length} briefed. Backlog carries over.`);
       }
+      return 0;
+    }
+
+    case 'setup': {
+      writeFile(paths.setup, renderSetup());
+      console.log(renderSetup());
+      console.log(`\n--- written to ${rel(paths.setup)}`);
+      console.log('Paste this into ChatGPT once, as project instructions or a custom GPT.');
       return 0;
     }
 

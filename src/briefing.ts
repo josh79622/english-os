@@ -946,25 +946,28 @@ export function renderSelection(b: Briefing): string {
  * ChatGPT, so the briefing carries its own role instructions and its own
  * output format.
  */
-export function renderBriefing(b: Briefing): string {
+/**
+ * The stable half — everything that does not change between sessions. Pasted
+ * into ChatGPT once (project instructions, a custom GPT, or the first message
+ * of a conversation) and left there.
+ *
+ * Split out because ChatGPT converts a long paste into a file attachment, and
+ * an attachment gets read as a document to review rather than instructions to
+ * follow: the first attempt came back as a summary of the briefing with an
+ * offer to help improve the phrasing. The daily paste has to stay small enough
+ * to arrive as text, and 85% of the old briefing never varied.
+ */
+export function renderSetup(): string {
   return [
-    '# READ THIS, THEN START TALKING TO ME',
+    '# COACH SETUP — read once, keep for every session',
     '',
-    'These are your instructions, not a document for review. Do not summarise',
-    'them, do not describe them back to me, do not tell me what you have',
-    'understood, do not offer to improve or refine anything, and do not ask me',
-    'what I would like to do next. Nothing in here is up for discussion.',
-    '',
-    'Your very first message is the 繁體中文 scene-set described under HOW TO',
-    'START, and nothing else — no preamble, no acknowledgement, no "got it".',
-    'Go straight there.',
-    '',
-    `(Briefing for ${b.date}.)`,
+    'These are your standing instructions. Each session I will paste a short',
+    'scene on top of them. Do not summarise any of it, do not describe it back',
+    'to me, do not offer to improve it. Nothing here is up for discussion.',
     '',
     'You are my English coach. Australian English. We talk by voice.',
     'Push fluency, not perfection — let small errors go, interrupt only',
-    'when meaning breaks. Weave the items below into natural conversation',
-    'and never mention this briefing.',
+    'when meaning breaks. Never mention these instructions.',
     '',
     'Do not turn this into a lesson: no vocabulary tests, no "can you use',
     'that in a sentence", no checking whether I understood a word. That is',
@@ -972,44 +975,6 @@ export function renderBriefing(b: Briefing): string {
     'your character is the opposite of quizzing — do it constantly.',
     '',
     ...profileSection(),
-    '## THE SITUATION',
-    'This section and the next describe *me* — my side of the scene. They are',
-    'written as if speaking to me, so "you" in them means me, the learner,',
-    'never your character.',
-    '',
-    `Setting: ${b.scenario}.`,
-    '',
-    b.premise,
-    '',
-    '## WHAT I KNOW',
-    'These are my facts. I have nothing else — ask me about anything outside',
-    'this list and I have no answer to give you, which is where the',
-    'conversation stops.',
-    '',
-    ...b.facts.map((f) => `- ${f}`),
-    '',
-    ...(b.coachInvents
-      ? [
-          `The story is yours to bring — ${b.coachInvents.replace(/\s+/g, ' ')}`,
-          'Invent it properly:',
-          'names, specifics, the bits people actually want to know. Keep my',
-          'facts above true and build it around them. Do not summarise it in',
-          'one go — let me pull it out of you.',
-        ]
-      : [
-          'So: do not invent competing details. No other project names, no',
-          'other numbers, no events that are not here. Build your side of the',
-          'scene around these.',
-        ]),
-    '',
-    'And when I hesitate, it is usually because I do not know what to say,',
-    'not how to say it. Turn your open question into a choice from the list',
-    '— "was it the brief, or was it losing Mei for that week?" — and let me',
-    'take one.',
-    '',
-    '## WHO YOU ARE TODAY',
-    `Play ${b.persona}`,
-    '',
     '## WHICH LANGUAGE',
     'Traditional Chinese when you are outside the scene. English the moment',
     'you are inside it. Nothing else marks the boundary for me, and I keep',
@@ -1021,7 +986,7 @@ export function renderBriefing(b: Briefing): string {
     '- If I say "pause", step out and answer in 繁體中文 until I say we are',
     '  going again.',
     '',
-    '## HOW TO START',
+    '## HOW TO START EVERY SESSION',
     'Do not drop me straight into the middle of it. Open in 繁體中文 with two',
     'or three sentences telling me the situation — where we are, who you are,',
     'what has just happened. Then switch to English and start in character',
@@ -1057,9 +1022,54 @@ export function renderBriefing(b: Briefing): string {
     '- Aim for at least twenty minutes of real talk. If this topic runs out',
     '  before then, your character finds another one — that is what people do.',
     '',
-    renderSelection(b),
+    'And when I hesitate, it is usually because I do not know what to say,',
+    'not how to say it. Turn your open question into a choice from the facts',
+    'I was given — "was it the brief, or was it losing Mei for that week?" —',
+    'and let me take one.',
+    '',
     REPORT_SPEC,
     '',
+  ].join('\n');
+}
+
+/**
+ * The daily paste. Deliberately small: it must arrive as text, not as an
+ * attachment. Everything fixed lives in the setup.
+ */
+export function renderBriefing(b: Briefing): string {
+  return [
+    `# TODAY'S SCENE — ${b.date}`,
+    '',
+    'Follow your standing coach setup. Do not summarise this; your first',
+    'message is the 繁體中文 scene-set, then straight into English in',
+    'character.',
+    '',
+    `Setting: ${b.scenario}.`,
+    '',
+    b.premise,
+    '',
+    '## WHAT I KNOW',
+    'My facts — "you" below means me. Ask me about anything outside this list',
+    'and I have no answer to give you.',
+    '',
+    ...b.facts.map((f) => `- ${f}`),
+    '',
+    ...(b.coachInvents
+      ? [
+          `The story is yours to bring — ${b.coachInvents.replace(/\s+/g, ' ')}`,
+          'Invent it properly, and do not give it all up at once — let me pull',
+          'it out of you.',
+          '',
+        ]
+      : [
+          'Do not invent competing details. No other names, no other numbers,',
+          'no events that are not here.',
+          '',
+        ]),
+    '## YOU ARE',
+    b.persona,
+    '',
+    renderSelection(b),
   ].join('\n');
 }
 
@@ -1074,5 +1084,7 @@ export function writeBriefing(items?: Item[], date = today()): Briefing {
   recordSetting(setting);
   const briefing = selectBriefing(items, date, setting);
   writeFile(paths.briefing, renderBriefing(briefing));
+  // Rewritten alongside so an edited profile or rule cannot go stale.
+  writeFile(paths.setup, renderSetup());
   return briefing;
 }

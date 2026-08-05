@@ -43,7 +43,8 @@ npm run stats
 | `knowledge/items/` | The knowledge base. One item per file — the source of truth. |
 | `knowledge/PROFILE.md` | Standing facts about me. Hand-written; carried into every briefing. |
 | `sessions/` | Raw Session Reports. Immutable. |
-| `state/`, `briefings/` | Derived. Safe to delete and rebuild. |
+| `briefings/` | Derived. `COACH_SETUP.md` pasted once; `DAILY_BRIEFING.md` each session. |
+| `state/` | Derived. Safe to delete and rebuild. |
 | `src/` | The tooling. `schedule.ts` is the only place dates are decided. |
 
 ## Documents

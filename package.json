@@ -8,6 +8,7 @@
   "scripts": {
     "ingest": "tsx src/cli.ts ingest",
     "briefing": "tsx src/cli.ts briefing",
+    "setup": "tsx src/cli.ts setup",
     "index": "tsx src/cli.ts index",
     "health": "tsx src/cli.ts health",
     "stats": "tsx src/cli.ts stats",

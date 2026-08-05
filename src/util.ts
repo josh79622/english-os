@@ -18,6 +18,7 @@ export const paths = {
   pendingCorrections: path.join(ROOT, 'state', 'pending-corrections.json'),
   settingHistory: path.join(ROOT, 'state', 'setting-history.json'),
   briefing: path.join(ROOT, 'briefings', 'DAILY_BRIEFING.md'),
+  setup: path.join(ROOT, 'briefings', 'COACH_SETUP.md'),
 };
 
 export function writeFile(file: string, contents: string): void {
