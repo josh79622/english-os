@@ -49,6 +49,7 @@ npm run stats
 
 ## Documents
 
+- [CLAUDE.md](CLAUDE.md) — orientation for Claude Code, and the traps
 - [CONSTITUTION.md](CONSTITUTION.md) — principles that don't change
 - [ARCHITECTURE.md](ARCHITECTURE.md) — schemas and algorithms
 - [CONTRACTS.md](CONTRACTS.md) — the two locked AI interfaces
