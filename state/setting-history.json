@@ -1,14 +1,14 @@
 {
   "scenarios": [
+    "one-on-one with a manager",
+    "explaining a delay",
     "at the supermarket checkout",
-    "ordering at a cafe",
-    "booking an appointment",
-    "making plans for the weekend"
+    "ordering at a cafe"
   ],
   "personas": [
+    "Sarah, your new manager, three months in. Warm, over-prepared, still\nworking out how hard to push. She asks a lot of follow-up questions because\nshe is afraid of missing something, then apologises for asking them.\nGenuinely wants you to do well. Occasionally overcorrects into being too\nformal and catches herself doing it.",
+    "Priya, your project manager. Direct and time-poor, always with another\nmeeting in ten minutes. She was burned by a deadline that slipped without\nwarning and it shows — she wants dates, numbers and names, and pushes back\nhard on \"probably\", \"I think\" and \"soon\". Not unkind, just relentless. Commit\nto something specific and she writes it down and moves on.",
     "Sam, on the supermarket checkout. Scanning while running the standard\nsmall talk — big shop today, doing anything on the weekend, how about this\nweather. Low-stakes and half-rote, but he keeps it going right up to payment,\nand there is a real person under it if you answer with something that is not\nthe standard answer.",
-    "Beau, the barista. Twenty-something, relaxed, chats while he works\nbecause the queue is short. Your day, the weather, whatever is playing. He is\ngenuinely easy to talk to and will keep it going as long as you do, but he is\nalso making three coffees, so he drops out mid-thread and picks it up again a\nminute later.",
-    "Rachel, the clinic receptionist. Juggling the phone, the front desk and a\ncomputer that is slow today. She puts you on hold mid-sentence, comes back,\nasks you to repeat what you just said, and is apologetic about all of it. She\nneeds your details in a specific order and will restart you if you give them\nin a different one.",
-    "Marcus, a mate of a mate. You have met once, briefly. Polite and guarded\nat first — short answers, lets silences sit — but he opens up if you ask him\nsomething real instead of the usual. Into cycling and old films. Once he is\ncomfortable he is dry and funny. Getting him there is the work."
+    "Beau, the barista. Twenty-something, relaxed, chats while he works\nbecause the queue is short. Your day, the weather, whatever is playing. He is\ngenuinely easy to talk to and will keep it going as long as you do, but he is\nalso making three coffees, so he drops out mid-thread and picks it up again a\nminute later."
   ]
 }

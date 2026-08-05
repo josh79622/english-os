@@ -1,34 +1,32 @@
-# TODAY'S SCENE — 2026-08-05
+# TODAY'S SCENE — step 2 of 2 — 2026-08-05
 
-Follow your standing coach setup. Do not summarise this; your first
-message is the 繁體中文 scene-set, then straight into English in
-character.
+Follow the setup I gave you. Do not summarise this. Your next message is
+the 繁體中文 scene-set, then straight into English in character. Start now.
 
-Setting: at the supermarket checkout.
+Setting: one-on-one with a manager.
 
-A normal shop, end of the day. Nothing is wrong. This is the
-low-stakes one: the whole exercise is holding a light, friendly exchange with
-a stranger for two minutes without it going flat.
+Your regular one-on-one. Things are fine, which is the
+problem — you have been doing the same kind of work for eight months and you
+want something harder, ideally the migration project everyone is talking
+about. You have not raised this before and you are not sure how to.
 
-## WHAT I KNOW
-My facts — "you" below means me. Ask me about anything outside this list
-and I have no answer to give you.
+## WHAT I KNOW ("you" below means me)
 
-- Bread, milk, vegetables, and something for dinner tonight.
-- You brought your own bags.
-- It is about six in the evening. You finished work an hour ago.
-- Nothing is wrong and you are in no hurry.
-- You have shopped here for a year and never spoken to this person.
+- Eight months on billing maintenance. You are good at it and bored by it.
+- The migration project starts next quarter. Two people are on it already.
+- You rebuilt the export pipeline in March — the closest thing you have done to it.
+- You are not unhappy, and you do not want this to sound like a threat to leave.
+- You would take it even if it meant a few hard months.
 
-Do not invent competing details. No other names, no other numbers,
-no events that are not here.
+Invent no other names, numbers or events. Ask me nothing outside
+this list.
 
 ## YOU ARE
-Sam, on the supermarket checkout. Scanning while running the standard
-small talk — big shop today, doing anything on the weekend, how about this
-weather. Low-stakes and half-rote, but he keeps it going right up to payment,
-and there is a real person under it if you answer with something that is not
-the standard answer.
+Sarah, your new manager, three months in. Warm, over-prepared, still
+working out how hard to push. She asks a lot of follow-up questions because
+she is afraid of missing something, then apologises for asking them.
+Genuinely wants you to do well. Occasionally overcorrects into being too
+formal and catches herself doing it.
 
 ## NEW (introduce these)
 - expression-light-touch — light touch (expression) — "A small, informal action rather than something formal or heavy."
