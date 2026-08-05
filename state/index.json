@@ -1,15 +1,15 @@
 {
   "generated": "2026-08-05",
-  "count": 6,
+  "count": 10,
   "items": [
     {
-      "id": "expression-light-touch",
+      "id": "expression-day-one-feature",
       "type": "expression",
-      "title": "light touch",
+      "title": "day-one feature",
       "domain": [
         "work"
       ],
-      "scenario": "Explaining a project delay",
+      "scenario": "Negotiating project scope",
       "tags": [],
       "first_seen": "2026-08-05",
       "last_seen": "2026-08-05",
@@ -24,6 +24,33 @@
       "frequency": 1
     },
     {
+      "id": "expression-light-touch",
+      "type": "expression",
+      "title": "light touch",
+      "domain": [
+        "work"
+      ],
+      "scenario": "Explaining a project delay",
+      "tags": [],
+      "first_seen": "2026-08-05",
+      "last_seen": "2026-08-05",
+      "interval": 3,
+      "ease": 1.95,
+      "last_review": "2026-08-05",
+      "next_review": "2026-08-08",
+      "review_history": [
+        {
+          "date": "2026-08-05",
+          "grade": 2,
+          "session": "2026-08-05-02"
+        }
+      ],
+      "mastery_score": 0.2,
+      "status": "learning",
+      "difficulty": "medium",
+      "frequency": 2
+    },
+    {
       "id": "expression-narrow-the-unknowns",
       "type": "expression",
       "title": "narrow the unknowns",
@@ -31,6 +58,54 @@
         "work"
       ],
       "scenario": "Explaining a project delay",
+      "tags": [],
+      "first_seen": "2026-08-05",
+      "last_seen": "2026-08-05",
+      "interval": 3,
+      "ease": 1.95,
+      "last_review": "2026-08-05",
+      "next_review": "2026-08-08",
+      "review_history": [
+        {
+          "date": "2026-08-05",
+          "grade": 2,
+          "session": "2026-08-05-02"
+        }
+      ],
+      "mastery_score": 0.2,
+      "status": "learning",
+      "difficulty": "medium",
+      "frequency": 2
+    },
+    {
+      "id": "expression-pull-their-weight",
+      "type": "expression",
+      "title": "pull their weight",
+      "domain": [
+        "work"
+      ],
+      "scenario": "Negotiating project scope",
+      "tags": [],
+      "first_seen": "2026-08-05",
+      "last_seen": "2026-08-05",
+      "interval": 2,
+      "ease": 2,
+      "last_review": null,
+      "next_review": "2026-08-07",
+      "review_history": [],
+      "mastery_score": 0,
+      "status": "new",
+      "difficulty": "medium",
+      "frequency": 1
+    },
+    {
+      "id": "expression-quick-and-dirty",
+      "type": "expression",
+      "title": "quick-and-dirty",
+      "domain": [
+        "work"
+      ],
+      "scenario": "Negotiating project scope",
       "tags": [],
       "first_seen": "2026-08-05",
       "last_seen": "2026-08-05",
@@ -55,15 +130,21 @@
       "tags": [],
       "first_seen": "2026-08-05",
       "last_seen": "2026-08-05",
-      "interval": 2,
-      "ease": 2,
-      "last_review": null,
-      "next_review": "2026-08-07",
-      "review_history": [],
-      "mastery_score": 0,
-      "status": "new",
-      "difficulty": "medium",
-      "frequency": 1
+      "interval": 1,
+      "ease": 1.85,
+      "last_review": "2026-08-05",
+      "next_review": "2026-08-06",
+      "review_history": [
+        {
+          "date": "2026-08-05",
+          "grade": 1,
+          "session": "2026-08-05-02"
+        }
+      ],
+      "mastery_score": 0.1,
+      "status": "learning",
+      "difficulty": "hard",
+      "frequency": 2
     },
     {
       "id": "strategy-do-you-mean-a-or-b",
@@ -101,6 +182,27 @@
         "listening",
         "clarification"
       ],
+      "first_seen": "2026-08-05",
+      "last_seen": "2026-08-05",
+      "interval": 2,
+      "ease": 2,
+      "last_review": null,
+      "next_review": "2026-08-07",
+      "review_history": [],
+      "mastery_score": 0,
+      "status": "new",
+      "difficulty": "medium",
+      "frequency": 1
+    },
+    {
+      "id": "strategy-justify-the-trade-off",
+      "type": "strategy",
+      "title": "justify the trade-off",
+      "domain": [
+        "work"
+      ],
+      "scenario": "Negotiating project scope",
+      "tags": [],
       "first_seen": "2026-08-05",
       "last_seen": "2026-08-05",
       "interval": 2,

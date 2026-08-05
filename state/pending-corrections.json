@@ -61,5 +61,59 @@
     "count": 1,
     "first_seen": "2026-08-05",
     "last_seen": "2026-08-05"
+  },
+  {
+    "said": "Do we only have three weeks",
+    "correct": "Why do we only have three weeks?",
+    "rule": "If you're asking about the reason, include \"why\".",
+    "key": "do we only have three weeks→why do we only have three weeks?",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
+  },
+  {
+    "said": "Could you explain uh that",
+    "correct": "Could you explain that a bit more?",
+    "rule": "Add a natural ending when asking for clarification.",
+    "key": "could you explain uh that→could you explain that a bit more?",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
+  },
+  {
+    "said": "It also need time to see the report",
+    "correct": "It also takes time for the reports to become meaningful.",
+    "rule": "\"Need time\" is understandable, but \"takes time\" sounds much more natural.",
+    "key": "it also need time to see the report→it also takes time for the reports to become meaningful.",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
+  },
+  {
+    "said": "I don't think we should put it in the first stage",
+    "correct": "I don't think we should include it in the first stage.",
+    "rule": "We usually include a feature in a release or stage.",
+    "key": "i don't think we should put it in the first stage→i don't think we should include it in the first stage.",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
+  },
+  {
+    "said": "I think we need to like to give them some limit.",
+    "correct": "I think we need to give them a clear limit.",
+    "rule": "Avoid \"like\" as a filler in formal discussions.",
+    "key": "i think we need to like to give them some limit.→i think we need to give them a clear limit.",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
+  },
+  {
+    "said": "we can only do like ten pages in this three weeks",
+    "correct": "We can only deliver about ten pages in those three weeks.",
+    "rule": "\"Deliver\" fits project discussions better than \"do\".",
+    "key": "we can only do like ten pages in this three weeks→we can only deliver about ten pages in those three weeks.",
+    "count": 1,
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05"
   }
 ]

@@ -13,5 +13,20 @@
     "mean_grade": null,
     "items_created": 3,
     "due_backlog": 0
+  },
+  {
+    "date": "2026-08-05",
+    "session_id": "2026-08-05-02",
+    "items_total": 10,
+    "by_status": {
+      "new": 7,
+      "learning": 3,
+      "familiar": 0,
+      "mastered": 0
+    },
+    "reviews": 3,
+    "mean_grade": 1.6666666666666667,
+    "items_created": 4,
+    "due_backlog": 0
   }
 ]

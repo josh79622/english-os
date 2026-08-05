@@ -223,11 +223,29 @@ export function ingest(file: string): IngestResult {
   return { report, created, updated, reinforced, unknown, violations: checkHealth() };
 }
 
+/**
+ * Coaches sometimes file praise as a correction — the same sentence back,
+ * with "(Good!)" appended. Left alone it banks as a pending mistake and
+ * becomes a `mistake` item the second time the learner says it right.
+ */
+function isNoOpCorrection(said: string, correct: string): boolean {
+  const norm = (s: string) =>
+    s
+      .toLowerCase()
+      .replace(/\([^)]*\)/g, '')
+      .replace(/["'“”‘’]/g, '')
+      .replace(/[.,!?;:]+/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  return norm(said) === norm(correct);
+}
+
 function applyCorrections(report: SessionReport, items: Map<string, Item>): string[] {
   const pending = readJson<PendingCorrection[]>(paths.pendingCorrections, []);
   const promoted: string[] = [];
 
   for (const c of report.corrections) {
+    if (isNoOpCorrection(c.said, c.correct)) continue;
     const key = `${c.said.toLowerCase().trim()}→${c.correct.toLowerCase().trim()}`;
     const found = pending.find((p) => p.key === key);
 
