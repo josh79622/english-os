@@ -122,3 +122,11 @@ fill it in as you notice which questions catch you out.
   isn't going to take either of them.
 - The pharmacists I see at work look flat out, mind you. That's not a
   dealbreaker — I like being busy. I just don't want it to be ridiculous.
+- AI has hit my field hard. The thing I used to make a living from, it does
+  now — and it does it better.
+- That's where most of my anxiety comes from, if I'm honest.
+- I half regret doing IT over here instead of something I could have moved
+  into.
+- Although my options were narrow at the time. My undergrad marks weren't
+  good and my IELTS was 6.5, so there wasn't much I could get into.
+- And going back for another bachelor's at my age isn't realistic.
