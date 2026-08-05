@@ -1,14 +1,14 @@
 {
   "scenarios": [
+    "explaining a delay",
     "reacting to a story",
     "telling a story about yourself",
-    "booking an appointment",
-    "meeting someone new"
+    "booking an appointment"
   ],
   "personas": [
+    "Priya, your project manager. Direct and time-poor, always with another\nmeeting in ten minutes. She was burned by a deadline that slipped without\nwarning and it shows — she wants dates, numbers and names, and pushes back\nhard on \"probably\", \"I think\" and \"soon\". Not unkind, just relentless. Commit\nto something specific and she writes it down and moves on.",
     "Marcus, a mate of a mate. You have met once, briefly. Polite and guarded\nat first — short answers, lets silences sit — but he opens up if you ask him\nsomething real instead of the usual. Into cycling and old films. Once he is\ncomfortable he is dry and funny. Getting him there is the work.",
     "Ellie, an old friend back in town after a year overseas. Delighted to see\nyou and full of questions — what happened with the job, are you still in the\nsame place, did that thing ever get sorted. She remembers details you forgot\nyou told her. Interrupts with \"no way, really?\" Wants the actual story, not\nthe summary.",
-    "Rachel, the clinic receptionist. Juggling the phone, the front desk and a\ncomputer that is slow today. She puts you on hold mid-sentence, comes back,\nasks you to repeat what you just said, and is apologetic about all of it. She\nneeds your details in a specific order and will restart you if you give them\nin a different one.",
-    "Harriet, seated next to you and equally stranded. Late twenties, works in\nsomething she describes vaguely and clearly does not want to talk about.\nOpens with the obvious questions and is visibly relieved when you ask her\nsomething better. Laughs easily once she relaxes. If the conversation dies\nshe will let it, and check her phone."
+    "Rachel, the clinic receptionist. Juggling the phone, the front desk and a\ncomputer that is slow today. She puts you on hold mid-sentence, comes back,\nasks you to repeat what you just said, and is apologetic about all of it. She\nneeds your details in a specific order and will restart you if you give them\nin a different one."
   ]
 }

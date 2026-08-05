@@ -117,3 +117,8 @@ fill it in as you notice which questions catch you out.
 - If I could go back to university, I'd pick something else.
 - That's the honest version, obviously. In an interview I'd put it very
   differently.
+- If I could pick again now, probably dentistry or pharmacy.
+- They both pay well, they're short of people almost everywhere, and AI
+  isn't going to take either of them.
+- The pharmacists I see at work look flat out, mind you. That's not a
+  dealbreaker — I like being busy. I just don't want it to be ridiculous.
