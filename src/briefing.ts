@@ -755,15 +755,21 @@ export function pickSetting(recent: SettingHistory = readHistory()): Setting {
  * Headings are kept, prose and unfilled TODO lines are dropped, so a
  * half-written profile still renders cleanly.
  */
-function readProfile(): string[] {
+interface ProfileSection {
+  name: string;
+  bullets: string[];
+}
+
+function readProfile(): ProfileSection[] {
   if (!fs.existsSync(paths.profile)) return [];
-  const lines: string[] = [];
+  const sections: ProfileSection[] = [];
+  let current: ProfileSection | null = null;
 
   // A bullet may be wrapped across several source lines. Dropping everything
   // that does not start with "- " silently truncated them mid-sentence.
   let bullet: string | null = null;
   const flush = () => {
-    if (bullet && !bullet.includes('TODO')) lines.push(bullet);
+    if (bullet && !bullet.includes('TODO')) current?.bullets.push(bullet);
     bullet = null;
   };
 
@@ -779,30 +785,53 @@ function readProfile(): string[] {
       continue;
     }
     flush();
-    if (line.startsWith('# ')) continue;
-    if (line.startsWith('## ')) lines.push('', `**${line.slice(3)}**`);
+    if (line.startsWith('## ')) {
+      current = { name: line.slice(3).trim(), bullets: [] };
+      sections.push(current);
+    }
   }
   flush();
 
   // Headings whose bullets were all TODO would otherwise render empty.
-  return lines
-    .filter((l, i, a) => !(l.startsWith('**') && !a[i + 1]?.startsWith('- ')))
-    .filter((l, i, a) => !(l === '' && !a[i + 1]?.startsWith('**')))
-    .slice(1);
+  return sections.filter((sec) => sec.bullets.length > 0);
 }
 
+/** Heading in PROFILE.md whose contents the coach must never raise. */
+const OFF_LIMITS = 'off limits';
+
 function profileSection(): string[] {
-  const profile = readProfile();
-  if (profile.length === 0) return [];
-  return [
-    '## ABOUT ME',
-    'True outside this scene and true every time. Ask me about any of it —',
-    'these are the ordinary questions I most need the practice on, and I will',
-    'always have an answer.',
-    '',
-    ...profile,
-    '',
-  ];
+  const sections = readProfile();
+  if (sections.length === 0) return [];
+
+  const open = sections.filter((s) => s.name.toLowerCase() !== OFF_LIMITS);
+  const closed = sections.filter((s) => s.name.toLowerCase() === OFF_LIMITS);
+  const lines: string[] = [];
+
+  if (open.length > 0) {
+    lines.push(
+      '## ABOUT ME',
+      'True outside this scene and true every time. Ask me about any of it —',
+      'these are the ordinary questions I most need the practice on, and I will',
+      'always have an answer.',
+      '',
+    );
+    for (const s of open) lines.push(`**${s.name}**`, ...s.bullets, '');
+  }
+
+  for (const s of closed) {
+    lines.push(
+      '## DO NOT ASK ME ABOUT THIS',
+      'Off limits — not because it is dull, but because I do not discuss it,',
+      'and a scene that walks me into it is worse than no scene at all. Never',
+      'raise it, never hint at it, and never build a question that only makes',
+      'sense if it is true. It is written here so you can steer around it.',
+      '',
+      ...s.bullets,
+      '',
+    );
+  }
+
+  return lines;
 }
 
 function pick<T>(list: T[], rnd: () => number): T | undefined {

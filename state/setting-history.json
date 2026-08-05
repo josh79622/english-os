@@ -1,14 +1,14 @@
 {
   "scenarios": [
+    "catching up with a friend",
     "at the supermarket checkout",
     "explaining a delay",
-    "reacting to a story",
-    "telling a story about yourself"
+    "reacting to a story"
   ],
   "personas": [
+    "Jess, a good mate you see every few weeks. Talks fast, tells long stories\nwith too much detail about people you have never met, and stops halfway to\nask \"wait, did I tell you this already?\" Expects you to react — go quiet and\nshe will say \"you're being weird, what's up?\" Generous, nosy, and very hard\nto interrupt.",
     "Sam, on the supermarket checkout. Scanning while running the standard\nsmall talk — big shop today, doing anything on the weekend, how about this\nweather. Low-stakes and half-rote, but he keeps it going right up to payment,\nand there is a real person under it if you answer with something that is not\nthe standard answer.",
     "Priya, your project manager. Direct and time-poor, always with another\nmeeting in ten minutes. She was burned by a deadline that slipped without\nwarning and it shows — she wants dates, numbers and names, and pushes back\nhard on \"probably\", \"I think\" and \"soon\". Not unkind, just relentless. Commit\nto something specific and she writes it down and moves on.",
-    "Marcus, a mate of a mate. You have met once, briefly. Polite and guarded\nat first — short answers, lets silences sit — but he opens up if you ask him\nsomething real instead of the usual. Into cycling and old films. Once he is\ncomfortable he is dry and funny. Getting him there is the work.",
-    "Ellie, an old friend back in town after a year overseas. Delighted to see\nyou and full of questions — what happened with the job, are you still in the\nsame place, did that thing ever get sorted. She remembers details you forgot\nyou told her. Interrupts with \"no way, really?\" Wants the actual story, not\nthe summary."
+    "Marcus, a mate of a mate. You have met once, briefly. Polite and guarded\nat first — short answers, lets silences sit — but he opens up if you ask him\nsomething real instead of the usual. Into cycling and old films. Once he is\ncomfortable he is dry and funny. Getting him there is the work."
   ]
 }

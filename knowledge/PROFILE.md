@@ -13,14 +13,16 @@ short enough to say out loud without thinking.
 Lines that still say TODO are skipped, so a half-filled profile is fine —
 fill it in as you notice which questions catch you out.
 
+Anything under **Off limits** is handled the opposite way: it is sent to the
+coach specifically so the coach knows to steer around it, never towards it.
+
 ## Me
 - I'm Josh. I'm from Taipei.
 - I live in Canterbury, out in the inner west. Nearly two years now.
 - I share a place with flatmates. They're all from China, so there's not
   much English at home.
 - I used to have Aussie and Iranian flatmates, but they moved out.
-- When I'm back in Taipei I stay at my boyfriend's place, near Shuanglian
-  station.
+- When I'm back in Taipei I stay near Shuanglian station.
 
 ## Work
 - I came over to do a Master's in IT at UTS. I finished not long ago.
@@ -55,7 +57,6 @@ fill it in as you notice which questions catch you out.
   own stories sound interesting.
 
 ## People
-- My boyfriend's in Taipei. I stay at his when I'm home.
 - Back home it's my parents and one older brother.
 - My brother's a teacher — history, geography and civics. He does a school
   and a cram school.
@@ -91,7 +92,7 @@ fill it in as you notice which questions catch you out.
   that I'm introverted, so I don't say much. Other days I think it's
   listening — I don't catch enough, so I don't risk it.
 - And I'm probably not getting enough hours in. My flatmates are Chinese and
-  I video call my boyfriend every day, so most days I speak more Chinese
+  I'm on a video call home every day, so most days I speak more Chinese
   than English.
 - Even on a good day it stays shallow. Short sentences, the same ones.
   Nothing new going in.
@@ -130,3 +131,9 @@ fill it in as you notice which questions catch you out.
 - Although my options were narrow at the time. My undergrad marks weren't
   good and my IELTS was 6.5, so there wasn't much I could get into.
 - And going back for another bachelor's at my age isn't realistic.
+
+## Off limits
+- I'm not out here. In Australia I don't mention a partner at all, and I'd
+  rather not be asked about dating, relationships, or who I live with back
+  home.
+- Do not construct questions that assume an answer either way.
