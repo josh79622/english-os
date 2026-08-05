@@ -948,7 +948,18 @@ export function renderSelection(b: Briefing): string {
  */
 export function renderBriefing(b: Briefing): string {
   return [
-    `# DAILY BRIEFING — ${b.date}`,
+    '# READ THIS, THEN START TALKING TO ME',
+    '',
+    'These are your instructions, not a document for review. Do not summarise',
+    'them, do not describe them back to me, do not tell me what you have',
+    'understood, do not offer to improve or refine anything, and do not ask me',
+    'what I would like to do next. Nothing in here is up for discussion.',
+    '',
+    'Your very first message is the 繁體中文 scene-set described under HOW TO',
+    'START, and nothing else — no preamble, no acknowledgement, no "got it".',
+    'Go straight there.',
+    '',
+    `(Briefing for ${b.date}.)`,
     '',
     'You are my English coach. Australian English. We talk by voice.',
     'Push fluency, not perfection — let small errors go, interrupt only',
