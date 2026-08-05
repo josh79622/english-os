@@ -23,6 +23,11 @@ coach specifically so the coach knows to steer around it, never towards it.
   much English at home.
 - I used to have Aussie and Iranian flatmates, but they moved out.
 - When I'm back in Taipei I stay near Shuanglian station.
+- If anyone asks: I'm single. "Nah, single at the moment." That's the whole
+  answer.
+- "Haven't had the time, honestly — it's been all job applications." Then
+  turn it back: "What about you?"
+
 
 ## Work
 - I came over to do a Master's in IT at UTS. I finished not long ago.
@@ -133,7 +138,9 @@ coach specifically so the coach knows to steer around it, never towards it.
 - And going back for another bachelor's at my age isn't realistic.
 
 ## Off limits
-- I'm not out here. In Australia I don't mention a partner at all, and I'd
-  rather not be asked about dating, relationships, or who I live with back
-  home.
-- Do not construct questions that assume an answer either way.
+- I don't discuss my private life here. If it comes up I say I'm single,
+  and that is the end of it.
+- Don't pursue it, don't circle back to it later, and don't build a
+  question that only works if there is someone.
+- Asking once, in passing, the way anyone might, is fine — I have my answer
+  ready. Asking twice is not.

@@ -820,11 +820,13 @@ function profileSection(): string[] {
 
   for (const s of closed) {
     lines.push(
-      '## DO NOT ASK ME ABOUT THIS',
-      'Off limits — not because it is dull, but because I do not discuss it,',
-      'and a scene that walks me into it is worse than no scene at all. Never',
-      'raise it, never hint at it, and never build a question that only makes',
-      'sense if it is true. It is written here so you can steer around it.',
+      '## KEEP OFF THIS',
+      'Not because it is dull — because I do not discuss it, and a scene that',
+      'walks me into it is worse than no scene at all. It is written here so',
+      'you can steer around it rather than into it.',
+      '',
+      'The lines below set exactly how far is too far. Follow them literally,',
+      'and never build a question that only makes sense if the thing is true.',
       '',
       ...s.bullets,
       '',
